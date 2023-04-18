@@ -7,20 +7,65 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE9F6F6629ECE86B008E31FD /* Solar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */; };
+		BE9F6F6729ECE86B008E31FD /* Solar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BEAB820F29EE3F9400B910D2 /* MapboxCoreNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB820E29EE3F9400B910D2 /* MapboxCoreNavigation */; };
+		BEAB821229EE3FEB00B910D2 /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB821129EE3FEB00B910D2 /* Mapbox */; };
+		BEAB821529EE4CCD00B910D2 /* MapboxDirections in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB821429EE4CCD00B910D2 /* MapboxDirections */; };
+		BEAB821829EE4D1E00B910D2 /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB821729EE4D1E00B910D2 /* MapboxGeocoder */; };
+		BEAB824329EE530100B910D2 /* MapboxNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB824229EE530100B910D2 /* MapboxNavigation */; };
+		BEAB824629EE540E00B910D2 /* MapboxSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB824529EE540E00B910D2 /* MapboxSpeech */; };
+		BEAB824929EE54AC00B910D2 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB824829EE54AC00B910D2 /* Turf */; };
+		BEAB824D29EE553C00B910D2 /* Polyline.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */; };
+		BEAB824E29EE553C00B910D2 /* Polyline.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BEAB825429EE591E00B910D2 /* SpotARVisualInstructionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */; };
+		BEAB825529EE591E00B910D2 /* SpotARNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */; };
+		BEAB825629EE591E00B910D2 /* SpotARVoiceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */; };
+		BEAB825729EE591E00B910D2 /* SpotARNavigationUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */; };
+		BEAB825829EE591E00B910D2 /* SpotARNavigationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */; };
+		BEB931B629ED061E00C105D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB931B529ED061E00C105D3 /* Main.storyboard */; };
 		BEF5F73929E941BA0005E9A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */; };
 		BEF5F73B29E941BA0005E9A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */; };
 		BEF5F73D29E941BA0005E9A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73C29E941BA0005E9A6 /* ViewController.swift */; };
-		BEF5F74029E941BA0005E9A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEF5F73E29E941BA0005E9A6 /* Main.storyboard */; };
 		BEF5F74229E941BB0005E9A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEF5F74129E941BB0005E9A6 /* Assets.xcassets */; };
 		BEF5F74529E941BB0005E9A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEF5F74329E941BB0005E9A6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BE9F6F5B29ECE862008E31FD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE9F6F6729ECE86B008E31FD /* Solar.xcframework in Embed Frameworks */,
+				BEAB824E29EE553C00B910D2 /* Polyline.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BE9F6F5C29ECE86A008E31FD /* MapboxMobileEvents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxMobileEvents.xcframework; path = Carthage/Build/MapboxMobileEvents.xcframework; sourceTree = "<group>"; };
+		BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
+		BE9F6F5E29ECE86A008E31FD /* MapboxGeocoder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxGeocoder.xcframework; path = Carthage/Build/MapboxGeocoder.xcframework; sourceTree = "<group>"; };
+		BE9F6F5F29ECE86A008E31FD /* MapboxSpeech.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxSpeech.xcframework; path = Carthage/Build/MapboxSpeech.xcframework; sourceTree = "<group>"; };
+		BE9F6F6029ECE86B008E31FD /* MapboxDirections.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxDirections.xcframework; path = Carthage/Build/MapboxDirections.xcframework; sourceTree = "<group>"; };
+		BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
+		BE9F6F6229ECE86B008E31FD /* MapboxNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxNavigation.xcframework; path = Carthage/Build/MapboxNavigation.xcframework; sourceTree = "<group>"; };
+		BE9F6F6329ECE86B008E31FD /* Turf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Turf.xcframework; path = Carthage/Build/Turf.xcframework; sourceTree = "<group>"; };
+		BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVisualInstructionDelegate.swift; sourceTree = "<group>"; };
+		BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewController.swift; sourceTree = "<group>"; };
+		BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVoiceControllerDelegate.swift; sourceTree = "<group>"; };
+		BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationUIDelegate.swift; sourceTree = "<group>"; };
+		BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewControllerDelegate.swift; sourceTree = "<group>"; };
+		BEB931B529ED061E00C105D3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BEB931E729ED584500C105D3 /* MapboxCoreNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MapboxCoreNavigation.xcframework; sourceTree = "<group>"; };
 		BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VietmapNavigationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BEF5F73C29E941BA0005E9A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BEF5F73F29E941BA0005E9A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEF5F74129E941BB0005E9A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEF5F74429E941BB0005E9A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEF5F74629E941BB0005E9A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -31,17 +76,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAB824329EE530100B910D2 /* MapboxNavigation in Frameworks */,
+				BE9F6F6629ECE86B008E31FD /* Solar.xcframework in Frameworks */,
+				BEAB824D29EE553C00B910D2 /* Polyline.xcframework in Frameworks */,
+				BEAB820F29EE3F9400B910D2 /* MapboxCoreNavigation in Frameworks */,
+				BEAB821529EE4CCD00B910D2 /* MapboxDirections in Frameworks */,
+				BEAB824629EE540E00B910D2 /* MapboxSpeech in Frameworks */,
+				BEAB821229EE3FEB00B910D2 /* Mapbox in Frameworks */,
+				BEAB824929EE54AC00B910D2 /* Turf in Frameworks */,
+				BEAB821829EE4D1E00B910D2 /* MapboxGeocoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE9F6F5729ECE861008E31FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEB931E729ED584500C105D3 /* MapboxCoreNavigation.xcframework */,
+				BE9F6F6029ECE86B008E31FD /* MapboxDirections.xcframework */,
+				BE9F6F5E29ECE86A008E31FD /* MapboxGeocoder.xcframework */,
+				BE9F6F5C29ECE86A008E31FD /* MapboxMobileEvents.xcframework */,
+				BE9F6F6229ECE86B008E31FD /* MapboxNavigation.xcframework */,
+				BE9F6F5F29ECE86A008E31FD /* MapboxSpeech.xcframework */,
+				BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */,
+				BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */,
+				BE9F6F6329ECE86B008E31FD /* Turf.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BEF5F72C29E941BA0005E9A6 = {
 			isa = PBXGroup;
 			children = (
 				BEF5F73729E941BA0005E9A6 /* VietmapNavigationSample */,
 				BEF5F73629E941BA0005E9A6 /* Products */,
+				BE9F6F5729ECE861008E31FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,10 +127,15 @@
 		BEF5F73729E941BA0005E9A6 /* VietmapNavigationSample */ = {
 			isa = PBXGroup;
 			children = (
+				BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */,
+				BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */,
+				BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */,
+				BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */,
+				BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */,
 				BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */,
 				BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */,
+				BEB931B529ED061E00C105D3 /* Main.storyboard */,
 				BEF5F73C29E941BA0005E9A6 /* ViewController.swift */,
-				BEF5F73E29E941BA0005E9A6 /* Main.storyboard */,
 				BEF5F74129E941BB0005E9A6 /* Assets.xcassets */,
 				BEF5F74329E941BB0005E9A6 /* LaunchScreen.storyboard */,
 				BEF5F74629E941BB0005E9A6 /* Info.plist */,
@@ -77,12 +153,22 @@
 				BEF5F73129E941BA0005E9A6 /* Sources */,
 				BEF5F73229E941BA0005E9A6 /* Frameworks */,
 				BEF5F73329E941BA0005E9A6 /* Resources */,
+				BE9F6F5B29ECE862008E31FD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = VietmapNavigationSample;
+			packageProductDependencies = (
+				BEAB820E29EE3F9400B910D2 /* MapboxCoreNavigation */,
+				BEAB821129EE3FEB00B910D2 /* Mapbox */,
+				BEAB821429EE4CCD00B910D2 /* MapboxDirections */,
+				BEAB821729EE4D1E00B910D2 /* MapboxGeocoder */,
+				BEAB824229EE530100B910D2 /* MapboxNavigation */,
+				BEAB824529EE540E00B910D2 /* MapboxSpeech */,
+				BEAB824829EE54AC00B910D2 /* Turf */,
+			);
 			productName = VietmapNavigationSample;
 			productReference = BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +197,15 @@
 				Base,
 			);
 			mainGroup = BEF5F72C29E941BA0005E9A6;
+			packageReferences = (
+				BEAB820D29EE3F9400B910D2 /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */,
+				BEAB821029EE3FEB00B910D2 /* XCRemoteSwiftPackageReference "map-ios-sdk" */,
+				BEAB821329EE4CCD00B910D2 /* XCRemoteSwiftPackageReference "vietmap-directions" */,
+				BEAB821629EE4D1E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-geocoder" */,
+				BEAB824129EE530100B910D2 /* XCRemoteSwiftPackageReference "vietmap-navigation" */,
+				BEAB824429EE540E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-speech" */,
+				BEAB824729EE54AC00B910D2 /* XCRemoteSwiftPackageReference "vietmap-turf-swift" */,
+			);
 			productRefGroup = BEF5F73629E941BA0005E9A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +220,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB931B629ED061E00C105D3 /* Main.storyboard in Resources */,
 				BEF5F74529E941BB0005E9A6 /* LaunchScreen.storyboard in Resources */,
 				BEF5F74229E941BB0005E9A6 /* Assets.xcassets in Resources */,
-				BEF5F74029E941BA0005E9A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +233,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEAB825629EE591E00B910D2 /* SpotARVoiceControllerDelegate.swift in Sources */,
+				BEAB825729EE591E00B910D2 /* SpotARNavigationUIDelegate.swift in Sources */,
+				BEAB825829EE591E00B910D2 /* SpotARNavigationViewControllerDelegate.swift in Sources */,
 				BEF5F73D29E941BA0005E9A6 /* ViewController.swift in Sources */,
 				BEF5F73929E941BA0005E9A6 /* AppDelegate.swift in Sources */,
+				BEAB825529EE591E00B910D2 /* SpotARNavigationViewController.swift in Sources */,
+				BEAB825429EE591E00B910D2 /* SpotARVisualInstructionDelegate.swift in Sources */,
 				BEF5F73B29E941BA0005E9A6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +247,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BEF5F73E29E941BA0005E9A6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BEF5F73F29E941BA0005E9A6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BEF5F74329E941BB0005E9A6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -356,6 +448,103 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BEAB820D29EE3F9400B910D2 /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-core-navigation.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.2;
+			};
+		};
+		BEAB821029EE3FEB00B910D2 /* XCRemoteSwiftPackageReference "map-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/map-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		BEAB821329EE4CCD00B910D2 /* XCRemoteSwiftPackageReference "vietmap-directions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-directions.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BEAB821629EE4D1E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-geocoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-geocoder.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BEAB824129EE530100B910D2 /* XCRemoteSwiftPackageReference "vietmap-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-navigation.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BEAB824429EE540E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-speech" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-speech.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BEAB824729EE54AC00B910D2 /* XCRemoteSwiftPackageReference "vietmap-turf-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nhatpham0301/vietmap-turf-swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BEAB820E29EE3F9400B910D2 /* MapboxCoreNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB820D29EE3F9400B910D2 /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */;
+			productName = MapboxCoreNavigation;
+		};
+		BEAB821129EE3FEB00B910D2 /* Mapbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB821029EE3FEB00B910D2 /* XCRemoteSwiftPackageReference "map-ios-sdk" */;
+			productName = Mapbox;
+		};
+		BEAB821429EE4CCD00B910D2 /* MapboxDirections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB821329EE4CCD00B910D2 /* XCRemoteSwiftPackageReference "vietmap-directions" */;
+			productName = MapboxDirections;
+		};
+		BEAB821729EE4D1E00B910D2 /* MapboxGeocoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB821629EE4D1E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-geocoder" */;
+			productName = MapboxGeocoder;
+		};
+		BEAB824229EE530100B910D2 /* MapboxNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB824129EE530100B910D2 /* XCRemoteSwiftPackageReference "vietmap-navigation" */;
+			productName = MapboxNavigation;
+		};
+		BEAB824529EE540E00B910D2 /* MapboxSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB824429EE540E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-speech" */;
+			productName = MapboxSpeech;
+		};
+		BEAB824829EE54AC00B910D2 /* Turf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEAB824729EE54AC00B910D2 /* XCRemoteSwiftPackageReference "vietmap-turf-swift" */;
+			productName = Turf;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BEF5F72D29E941BA0005E9A6 /* Project object */;
 }

@@ -1,0 +1,68 @@
+{
+  "pins" : [
+    {
+      "identity" : "map-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/map-ios-sdk.git",
+      "state" : {
+        "revision" : "fc17b958f437c566b806a680738572b4b7b13d6f",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "vietmap-core-navigation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-core-navigation.git",
+      "state" : {
+        "revision" : "c924b244a537ba331f635c07c32a114218bab2f3",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "vietmap-directions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-directions.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f78329c1f0fd3792d795c8c8ea7160828b93e82f"
+      }
+    },
+    {
+      "identity" : "vietmap-geocoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-geocoder.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1483ef870718a5833989d248a1d2819d4af495e3"
+      }
+    },
+    {
+      "identity" : "vietmap-navigation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-navigation.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f87d8eb13c7e673917516a56b38dd7e4928a4801"
+      }
+    },
+    {
+      "identity" : "vietmap-speech",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-speech.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b60ec16fe5cdfbf04552a9839518e8783af09b97"
+      }
+    },
+    {
+      "identity" : "vietmap-turf-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nhatpham0301/vietmap-turf-swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8d5643e55265b13f3c8e39539b08f06c5cccf6f1"
+      }
+    }
+  ],
+  "version" : 2
+}
