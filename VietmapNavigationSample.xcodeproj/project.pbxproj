@@ -47,21 +47,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BE9F6F5C29ECE86A008E31FD /* MapboxMobileEvents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxMobileEvents.xcframework; path = Carthage/Build/MapboxMobileEvents.xcframework; sourceTree = "<group>"; };
 		BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
-		BE9F6F5E29ECE86A008E31FD /* MapboxGeocoder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxGeocoder.xcframework; path = Carthage/Build/MapboxGeocoder.xcframework; sourceTree = "<group>"; };
-		BE9F6F5F29ECE86A008E31FD /* MapboxSpeech.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxSpeech.xcframework; path = Carthage/Build/MapboxSpeech.xcframework; sourceTree = "<group>"; };
-		BE9F6F6029ECE86B008E31FD /* MapboxDirections.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxDirections.xcframework; path = Carthage/Build/MapboxDirections.xcframework; sourceTree = "<group>"; };
 		BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
-		BE9F6F6229ECE86B008E31FD /* MapboxNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxNavigation.xcframework; path = Carthage/Build/MapboxNavigation.xcframework; sourceTree = "<group>"; };
-		BE9F6F6329ECE86B008E31FD /* Turf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Turf.xcframework; path = Carthage/Build/Turf.xcframework; sourceTree = "<group>"; };
 		BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVisualInstructionDelegate.swift; sourceTree = "<group>"; };
 		BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewController.swift; sourceTree = "<group>"; };
 		BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVoiceControllerDelegate.swift; sourceTree = "<group>"; };
 		BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationUIDelegate.swift; sourceTree = "<group>"; };
 		BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BEB931B529ED061E00C105D3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		BEB931E729ED584500C105D3 /* MapboxCoreNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MapboxCoreNavigation.xcframework; sourceTree = "<group>"; };
 		BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VietmapNavigationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,15 +87,8 @@
 		BE9F6F5729ECE861008E31FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BEB931E729ED584500C105D3 /* MapboxCoreNavigation.xcframework */,
-				BE9F6F6029ECE86B008E31FD /* MapboxDirections.xcframework */,
-				BE9F6F5E29ECE86A008E31FD /* MapboxGeocoder.xcframework */,
-				BE9F6F5C29ECE86A008E31FD /* MapboxMobileEvents.xcframework */,
-				BE9F6F6229ECE86B008E31FD /* MapboxNavigation.xcframework */,
-				BE9F6F5F29ECE86A008E31FD /* MapboxSpeech.xcframework */,
 				BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */,
 				BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */,
-				BE9F6F6329ECE86B008E31FD /* Turf.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
