@@ -1,7 +1,6 @@
 import UIKit
 import MapboxCoreNavigation
 import MapboxNavigation
-//import MapboxNavigationUI
 import MapboxDirections
 import UserNotifications
 import MapKit

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Needed for the location permission</string>
 	<key>MGLMapboxAPIBaseURL</key>
 	<string>https://api.mapbox.com/</string>
 	<key>MGLMapboxAccessToken</key>
