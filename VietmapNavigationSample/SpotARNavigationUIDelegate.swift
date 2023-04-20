@@ -1,7 +1,8 @@
 import UIKit
+import MapboxNavigation
 
 public protocol SpotARNavigationUIDelegate {
-    func wantsToPresent(viewController: UIViewController) -> Void
+    func wantsToPresent(viewController: NavigationViewController) -> Void
     func didArrive() -> Void
     func didCancel() -> Void
 }

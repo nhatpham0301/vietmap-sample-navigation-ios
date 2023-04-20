@@ -21,7 +21,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var bottomBarBackground: UIView!
     
     var navigationViewController: SpotARNavigationViewController!
-    var navigationView: UIViewController?
+    var navigationView: NavigationViewController?
+    var mapboxRouteController: RouteController?
     
     // MARK: Properties
     var mapView: NavigationMapView? {
@@ -151,9 +152,21 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         navigationViewController = SpotARNavigationViewController()
         navigationViewController.delegate = self
         navigationViewController.startNavigation(routes: routes!, simulated: simulationButton.isSelected)
+        
+        // MARK: Register listener move camera for map
+        guard let route = routes?.first else { return }
+        let simulatedLocationManager = SimulatedLocationManager(route: route)
+        simulatedLocationManager.speedMultiplier = 10
+        let mapboxRouteController = RouteController(
+            along: route,
+            directions: Directions.shared,
+            locationManager: NavigationLocationManager())
+        self.mapboxRouteController = mapboxRouteController
+        mapboxRouteController.delegate = self
+        mapboxRouteController.resume()
     }
 
-    func presentAndRemoveMapview(_ viewController: UIViewController) {
+    func presentAndRemoveMapview(_ viewController: NavigationViewController) {
         self.navigationView = viewController
         present(viewController, animated: true) {
             self.mapView?.removeFromSuperview()
@@ -229,7 +242,7 @@ extension ViewController: NavigationMapViewDelegate {
 }
 
 extension ViewController: SpotARNavigationUIDelegate {
-    func wantsToPresent(viewController: UIViewController) {
+    func wantsToPresent(viewController: MapboxNavigation.NavigationViewController) {
         presentAndRemoveMapview(viewController)
     }
     
@@ -241,5 +254,38 @@ extension ViewController: SpotARNavigationUIDelegate {
         self.navigationView?.dismiss(animated: true) {
             self.startMapView()
         }
+    }
+}
+
+// MARK: Route Controller Delegate
+extension ViewController: RouteControllerDelegate {
+    @objc public func routeController(_ routeController: RouteController, didUpdate locations: [CLLocation]) {
+        let camera = MGLMapCamera(
+            lookingAtCenter: locations.first!.coordinate,
+            acrossDistance: 500,
+            pitch: 135,
+            heading: 90
+        )
+        self.navigationView?.mapView?.setCamera(camera, animated: true)
+    }
+    
+    @objc func didPassVisualInstructionPoint(notification: NSNotification) {
+        guard let currentVisualInstruction = currentStepProgress(from: notification)?.currentVisualInstruction else { return }
+        
+        print(String(
+            format: "didPassVisualInstructionPoint primary text: %@ and secondary text: %@",
+            String(describing: currentVisualInstruction.primaryInstruction.text),
+            String(describing: currentVisualInstruction.secondaryInstruction?.text)))
+    }
+    
+    @objc func didPassSpokenInstructionPoint(notification: NSNotification) {
+        guard let currentSpokenInstruction = currentStepProgress(from: notification)?.currentSpokenInstruction else { return }
+        
+        print("didPassSpokenInstructionPoint text: \(currentSpokenInstruction.text)")
+    }
+    
+    private func currentStepProgress(from notification: NSNotification) -> RouteStepProgress? {
+        let routeProgress = notification.userInfo?[RouteControllerNotificationUserInfoKey.routeProgressKey] as? RouteProgress
+        return routeProgress?.currentLegProgress.currentStepProgress
     }
 }
