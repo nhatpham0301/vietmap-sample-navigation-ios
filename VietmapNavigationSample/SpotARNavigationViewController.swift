@@ -2,16 +2,21 @@ import Foundation
 import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
+import CoreLocation
+
+private typealias MatchRequestSuccess = (() -> Void)
+private typealias MatchRequestFailure = ((NSError) -> Void)
 
 public class SpotARNavigationViewController {
     private var navigationViewController: NavigationViewController!
     private var mapboxRouteController: RouteController?
     private var routes: [Route]?
-    
     public var delegate: SpotARNavigationUIDelegate?
+    private var currentLocation: CLLocation!
+    private var isFirstRender: Bool = false
     
     public init() {}
-    
+
     public func startNavigation(routes: [Route], simulated: Bool = false) {
         guard let route = routes.first else { return }
         self.routes = routes
@@ -23,14 +28,29 @@ public class SpotARNavigationViewController {
         )
         navigationViewController.delegate = self
         customStyleMap()
-        addSubViewMap()
+        configureMapView()
         addListenerMap()
-        addListenerCamera(simulated: simulated)
+        addSubViewMap()
         delegate?.wantsToPresent(viewController: navigationViewController)
+//        if let customImage = UIImage(systemName: "camera.circle") {
+//            let layer = navigationViewController.mapView?.style?.layer(withIdentifier: "layerIdentifier") as? MGLSymbolStyleLayer
+//                layer?.iconImageName = NSExpression(forConstantValue: "custom")
+//                layer?.iconSize = NSExpression(forConstantValue: NSValue(cgSize: customImage.size))
+//                layer?.iconOffset = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 0)))
+//                layer?.setImage(customImage, forName: "custom")
+//        }
     }
     
     @objc private func customButtonTapped() {
-        
+        let camera = MGLMapCamera(
+            lookingAtCenter: currentLocation.coordinate,
+            acrossDistance: 1000,
+            pitch: 0,
+            heading: currentLocation.course
+        )
+        print("latitude: \(currentLocation.coordinate.latitude)")
+        print("longitude: \(currentLocation.coordinate.longitude)")
+        navigationViewController.mapView?.setCamera(camera, animated: true)
     }
     
     @objc func progressDidReroute(_ notification: Notification) {
@@ -42,11 +62,30 @@ public class SpotARNavigationViewController {
     @objc func progressDidChange(_ notification: NSNotification  ) {
         let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey.routeProgressKey] as! RouteProgress
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
-    
+        currentLocation = location
+        print("latitude progressDidChange: \(location.coordinate.latitude)")
+        print("longitude progressDidChange: \(location.coordinate.longitude)")
+        setCenterIsFirst(location)
         addManeuverArrow(routeProgress)
         updateUserPuck(location)
         readjustMapCenter()
     }
+    
+    private func setCenterIsFirst(_ location: CLLocation) {
+        if !isFirstRender {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let camera = MGLMapCamera(
+                    lookingAtCenter: location.coordinate,
+                    acrossDistance: 500,
+                    pitch: 75,
+                    heading: location.course
+                )
+                self.navigationViewController.mapView?.setCamera(camera, animated: true)
+            }
+            isFirstRender = true
+        }
+    }
+    
     
     private func addManeuverArrow(_ routeProgress: RouteProgress) {
         if routeProgress.currentLegProgress.followOnStep != nil {
@@ -57,6 +96,13 @@ public class SpotARNavigationViewController {
     }
     
     private func updateUserPuck(_ location: CLLocation) {
+        let camera = MGLMapCamera(
+            lookingAtCenter: location.coordinate,
+            acrossDistance: 500,
+            pitch: 75,
+            heading: location.course
+        )
+        navigationViewController.mapView?.setCamera(camera, animated: true)
         navigationViewController.mapView?.updateCourseTracking(location: location, animated: true)
     }
     
@@ -71,19 +117,20 @@ public class SpotARNavigationViewController {
     private func getNavigationLocationManager(simulated: Bool) -> NavigationLocationManager {
         guard let route = routes?.first else { return NavigationLocationManager() }
         let simulatedLocationManager = SimulatedLocationManager(route: route)
-       simulatedLocationManager.speedMultiplier = 5
+        simulatedLocationManager.speedMultiplier = 2
         return simulated ? simulatedLocationManager : NavigationLocationManager()
     }
     
-    private func configureMapView(_ mapView: NavigationMapView) {
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.userTrackingMode = .follow
-        mapView.logoView.isHidden = true
+    private func configureMapView() {
+        navigationViewController.mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        navigationViewController.mapView?.userTrackingMode = .follow
+        navigationViewController.mapView?.logoView.isHidden = false
+        navigationViewController.routeController.reroutesProactively = true
     }
 
     private func customStyleMap() {
         navigationViewController.mapView?.styleURL = URL(string: "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2");
-        navigationViewController.mapView?.routeLineColor = UIColor.red
+        navigationViewController.mapView?.routeLineColor = UIColor.yellow
     }
 
     private func addSubViewMap() {
@@ -99,64 +146,16 @@ public class SpotARNavigationViewController {
         
         navigationViewController.mapView?.addSubview(customButton)
         navigationViewController.mapView?.bringSubviewToFront(customButton)
-        navigationViewController.routeController.reroutesProactively = true
     }
-    
+
     private func addListenerMap() {
         NotificationCenter.default.addObserver(self, selector: #selector(progressDidChange(_ :)), name: .routeControllerProgressDidChange, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(progressDidReroute(_ :)), name: .routeControllerDidReroute, object: nil)
     }
     
-    private func addListenerCamera(simulated: Bool = false) {
-        guard let route = routes?.first else { return }
-        let mapboxRouteController = RouteController(
-            along: route,
-            directions: Directions.shared,
-            locationManager: getNavigationLocationManager(simulated: simulated))
-        self.mapboxRouteController = mapboxRouteController
-        mapboxRouteController.delegate = self
-        mapboxRouteController.resume()
-    }
-    
-    deinit {
-            // Hủy đăng ký lắng nghe sự kiện khi view controller bị hủy
+    public func cancelListener() {
         NotificationCenter.default.removeObserver(self, name: .routeControllerDidReroute, object: nil)
         NotificationCenter.default.removeObserver(self, name: .routeControllerProgressDidChange, object: nil)
         mapboxRouteController?.delegate = nil
-    }
-}
-
-// MARK: Route Controller Delegate
-extension SpotARNavigationViewController: RouteControllerDelegate {
-    @objc public func routeController(_ routeController: RouteController, didUpdate locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        let camera = MGLMapCamera(
-            lookingAtCenter: location.coordinate,
-            acrossDistance: 500,
-            pitch: 75,
-            heading: location.course
-        )
-        self.navigationViewController.mapView?.setCamera(camera, animated: true)
-    }
-    
-    @objc func didPassVisualInstructionPoint(notification: NSNotification) {
-        guard let currentVisualInstruction = currentStepProgress(from: notification)?.currentVisualInstruction else { return }
-        
-        print(String(
-            format: "didPassVisualInstructionPoint primary text: %@ and secondary text: %@",
-            String(describing: currentVisualInstruction.primaryInstruction.text),
-            String(describing: currentVisualInstruction.secondaryInstruction?.text)))
-    }
-    
-    @objc func didPassSpokenInstructionPoint(notification: NSNotification) {
-        guard let currentSpokenInstruction = currentStepProgress(from: notification)?.currentSpokenInstruction else { return }
-        
-        print("didPassSpokenInstructionPoint text: \(currentSpokenInstruction.text)")
-    }
-    
-    private func currentStepProgress(from notification: NSNotification) -> RouteStepProgress? {
-        let routeProgress = notification.userInfo?[RouteControllerNotificationUserInfoKey.routeProgressKey] as? RouteProgress
-        return routeProgress?.currentLegProgress.currentStepProgress
     }
 }
