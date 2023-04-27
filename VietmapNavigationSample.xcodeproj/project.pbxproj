@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0C19CE29F936C9004303C0 /* MapboxNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = BE0C19CD29F936C9004303C0 /* MapboxNavigation */; };
 		BE12112D29F7D02D009F042F /* MapboxCoreNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = BE12112C29F7D02D009F042F /* MapboxCoreNavigation */; };
-		BE28C21F29F8DEEC00FFCC96 /* MapboxNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE28C21E29F8DEEC00FFCC96 /* MapboxNavigation.framework */; };
 		BE9F6F6629ECE86B008E31FD /* Solar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */; };
 		BE9F6F6729ECE86B008E31FD /* Solar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEAB821529EE4CCD00B910D2 /* MapboxDirections in Frameworks */ = {isa = PBXBuildFile; productRef = BEAB821429EE4CCD00B910D2 /* MapboxDirections */; };
@@ -47,7 +47,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BE28C21E29F8DEEC00FFCC96 /* MapboxNavigation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxNavigation.framework; sourceTree = SOURCE_ROOT; };
 		BE9F6F5D29ECE86A008E31FD /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
 		BE9F6F6129ECE86B008E31FD /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
 		BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVisualInstructionDelegate.swift; sourceTree = "<group>"; };
@@ -71,9 +70,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEAD3A6029F77F6B005B5E49 /* Mapbox in Frameworks */,
+				BE0C19CE29F936C9004303C0 /* MapboxNavigation in Frameworks */,
 				BE9F6F6629ECE86B008E31FD /* Solar.xcframework in Frameworks */,
 				BEAB824D29EE553C00B910D2 /* Polyline.xcframework in Frameworks */,
-				BE28C21F29F8DEEC00FFCC96 /* MapboxNavigation.framework in Frameworks */,
 				BEAB821529EE4CCD00B910D2 /* MapboxDirections in Frameworks */,
 				BE12112D29F7D02D009F042F /* MapboxCoreNavigation in Frameworks */,
 				BEAB824629EE540E00B910D2 /* MapboxSpeech in Frameworks */,
@@ -114,19 +113,18 @@
 		BEF5F73729E941BA0005E9A6 /* VietmapNavigationSample */ = {
 			isa = PBXGroup;
 			children = (
-				BE28C21E29F8DEEC00FFCC96 /* MapboxNavigation.framework */,
 				BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */,
 				BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */,
 				BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */,
 				BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */,
 				BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */,
-				BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */,
 				BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */,
 				BEB931B529ED061E00C105D3 /* Main.storyboard */,
 				BEF5F73C29E941BA0005E9A6 /* ViewController.swift */,
 				BEF5F74129E941BB0005E9A6 /* Assets.xcassets */,
 				BEF5F74329E941BB0005E9A6 /* LaunchScreen.storyboard */,
 				BEF5F74629E941BB0005E9A6 /* Info.plist */,
+				BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */,
 			);
 			path = VietmapNavigationSample;
 			sourceTree = "<group>";
@@ -155,6 +153,7 @@
 				BEAB824829EE54AC00B910D2 /* Turf */,
 				BEAD3A5F29F77F6B005B5E49 /* Mapbox */,
 				BE12112C29F7D02D009F042F /* MapboxCoreNavigation */,
+				BE0C19CD29F936C9004303C0 /* MapboxNavigation */,
 			);
 			productName = VietmapNavigationSample;
 			productReference = BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */;
@@ -190,8 +189,8 @@
 				BEAB824429EE540E00B910D2 /* XCRemoteSwiftPackageReference "vietmap-speech" */,
 				BEAB824729EE54AC00B910D2 /* XCRemoteSwiftPackageReference "vietmap-turf-swift" */,
 				BEAD3A5E29F77F6B005B5E49 /* XCRemoteSwiftPackageReference "map-ios-sdk" */,
-				BE12112829F7D00B009F042F /* XCRemoteSwiftPackageReference "vietmap-navigation" */,
 				BE12112B29F7D02D009F042F /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */,
+				BE0C19CC29F936C9004303C0 /* XCRemoteSwiftPackageReference "vietmap-navigation" */,
 			);
 			productRefGroup = BEF5F73629E941BA0005E9A6 /* Products */;
 			projectDirPath = "";
@@ -366,7 +365,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L276863CKR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +385,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation22;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -402,7 +401,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L276863CKR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -422,7 +421,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation22;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -455,12 +454,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BE12112829F7D00B009F042F /* XCRemoteSwiftPackageReference "vietmap-navigation" */ = {
+		BE0C19CC29F936C9004303C0 /* XCRemoteSwiftPackageReference "vietmap-navigation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nhatpham0301/vietmap-navigation.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = revision;
+				revision = 1b822d2892db967902fb10544e1199393347e277;
 			};
 		};
 		BE12112B29F7D02D009F042F /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */ = {
@@ -514,6 +513,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BE0C19CD29F936C9004303C0 /* MapboxNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE0C19CC29F936C9004303C0 /* XCRemoteSwiftPackageReference "vietmap-navigation" */;
+			productName = MapboxNavigation;
+		};
 		BE12112C29F7D02D009F042F /* MapboxCoreNavigation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BE12112B29F7D02D009F042F /* XCRemoteSwiftPackageReference "vietmap-core-navigation" */;

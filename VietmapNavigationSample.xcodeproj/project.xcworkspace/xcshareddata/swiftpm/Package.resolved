@@ -41,8 +41,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/vietmap-navigation.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "f87d8eb13c7e673917516a56b38dd7e4928a4801"
+        "revision" : "1b822d2892db967902fb10544e1199393347e277"
       }
     },
     {

@@ -4,9 +4,6 @@ import MapboxNavigation
 import MapboxDirections
 import CoreLocation
 
-private typealias MatchRequestSuccess = (() -> Void)
-private typealias MatchRequestFailure = ((NSError) -> Void)
-
 public class SpotARNavigationViewController {
     private var navigationViewController: NavigationViewController!
     private var mapboxRouteController: RouteController?
@@ -32,13 +29,6 @@ public class SpotARNavigationViewController {
         addListenerMap()
         addSubViewMap()
         delegate?.wantsToPresent(viewController: navigationViewController)
-//        if let customImage = UIImage(systemName: "camera.circle") {
-//            let layer = navigationViewController.mapView?.style?.layer(withIdentifier: "layerIdentifier") as? MGLSymbolStyleLayer
-//                layer?.iconImageName = NSExpression(forConstantValue: "custom")
-//                layer?.iconSize = NSExpression(forConstantValue: NSValue(cgSize: customImage.size))
-//                layer?.iconOffset = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 0)))
-//                layer?.setImage(customImage, forName: "custom")
-//        }
     }
     
     @objc private func customButtonTapped() {
@@ -48,8 +38,6 @@ public class SpotARNavigationViewController {
             pitch: 0,
             heading: currentLocation.course
         )
-        print("latitude: \(currentLocation.coordinate.latitude)")
-        print("longitude: \(currentLocation.coordinate.longitude)")
         navigationViewController.mapView?.setCamera(camera, animated: true)
     }
     
@@ -63,8 +51,6 @@ public class SpotARNavigationViewController {
         let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey.routeProgressKey] as! RouteProgress
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
         currentLocation = location
-        print("latitude progressDidChange: \(location.coordinate.latitude)")
-        print("longitude progressDidChange: \(location.coordinate.longitude)")
         setCenterIsFirst(location)
         addManeuverArrow(routeProgress)
         updateUserPuck(location)
