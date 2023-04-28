@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aCx-td-5El">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +19,7 @@
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfo-Ic-OqD">
                                 <rect key="frame" x="16" y="578" width="343" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long press to select a destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEY-t6-Ect">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhấn giữ trên bản đồ để chọn vị trí" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEY-t6-Ect">
                                         <rect key="frame" x="8" y="0.0" width="327" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,15 +43,15 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiq-Gf-SKY">
-                                        <rect key="frame" x="8" y="0.0" width="130" height="44"/>
-                                        <state key="normal" title="Simulate Locations"/>
+                                        <rect key="frame" x="8" y="0.0" width="103" height="44"/>
+                                        <state key="normal" title="Mô phỏng vị trí"/>
                                         <connections>
                                             <action selector="simulateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="76o-Mq-vnj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMe-Tl-a1N">
-                                        <rect key="frame" x="256" y="0.0" width="111" height="44"/>
-                                        <state key="normal" title="Start Navigation"/>
+                                        <rect key="frame" x="233" y="0.0" width="134" height="44"/>
+                                        <state key="normal" title="Bắt đầu điều hướng"/>
                                         <connections>
                                             <action selector="startButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xoh-ho-hPb"/>
                                         </connections>
@@ -87,9 +88,9 @@
                     <navigationItem key="navigationItem" title="Vietmap Navigation" id="zxr-0T-HBr">
                         <barButtonItem key="leftBarButtonItem" id="XbQ-fY-lUb">
                             <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="6ux-mK-LQF">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <rect key="frame" x="16" y="7" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Clear map"/>
+                                <state key="normal" title="Xoá điểm đến"/>
                                 <connections>
                                     <action selector="clearMapPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SHt-XT-eUM"/>
                                 </connections>

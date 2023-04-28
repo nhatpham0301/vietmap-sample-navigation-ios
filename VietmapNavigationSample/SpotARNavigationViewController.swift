@@ -82,13 +82,16 @@ public class SpotARNavigationViewController {
     }
     
     private func updateUserPuck(_ location: CLLocation) {
-        let camera = MGLMapCamera(
-            lookingAtCenter: location.coordinate,
-            acrossDistance: 500,
-            pitch: 75,
-            heading: location.course
-        )
-        navigationViewController.mapView?.setCamera(camera, animated: true)
+        if ((navigationViewController.mapView?.tracksUserCourse) != nil), navigationViewController.mapView?.tracksUserCourse == true {
+            let camera = MGLMapCamera(
+                lookingAtCenter: location.coordinate,
+                acrossDistance: 500,
+                pitch: 75,
+                heading: location.course
+            )
+            print("locaiton: \(location.coordinate)")
+            navigationViewController.mapView?.setCamera(camera, animated: true)
+        }
         navigationViewController.mapView?.updateCourseTracking(location: location, animated: true)
     }
     

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>vi</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 	<key>MGLMapboxAPIBaseURL</key>
 	<string>https://api.mapbox.com/</string>
 	<key>MGLMapboxAccessToken</key>
@@ -25,21 +29,21 @@
 			</array>
 		</dict>
 	</dict>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Get user location</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Get user location</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Get user location</string>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>audio</string>
-        <string>location</string>
-    </array>
-    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
-    <dict>
-      <key>LocationAccuracyAuthorizationDescription</key>
-      <string>Please enable precise location. Turn-by-turn directions only work when precise location data is available.</string>
-    </dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Get user location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Get user location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Get user location</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>LocationAccuracyAuthorizationDescription</key>
+		<string>Please enable precise location. Turn-by-turn directions only work when precise location data is available.</string>
+	</dict>
 </dict>
 </plist>

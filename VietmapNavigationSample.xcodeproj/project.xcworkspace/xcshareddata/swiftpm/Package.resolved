@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/vietmap-core-navigation.git",
       "state" : {
-        "revision" : "c924b244a537ba331f635c07c32a114218bab2f3",
-        "version" : "1.0.2"
+        "revision" : "55d6f2f890d1ccd20a1a5d5ee552974b8cd6d90e",
+        "version" : "1.0.3"
       }
     },
     {
@@ -41,7 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/vietmap-navigation.git",
       "state" : {
-        "revision" : "1b822d2892db967902fb10544e1199393347e277"
+        "revision" : "4538dd3812e7d2483b5054a41c73b39795e9d8d0",
+        "version" : "1.0.2"
       }
     },
     {

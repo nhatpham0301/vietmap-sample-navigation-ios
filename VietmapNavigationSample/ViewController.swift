@@ -74,11 +74,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startMapView()
-//        longPressHintView.isHidden = true
-//        bottomBarBackground.isHidden = true
-//        bottomBar.isHidden = true
-//        simulationButton.isHidden = true
-//        startButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -171,11 +166,12 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         self.routes = nil
         self.waypoints = []
         self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2"))
-
+        simulationButton.isSelected = false
         // Reset the navigation styling to the defaults if we are returning from a presentation.
         if (presentedViewController != nil) {
             DayStyle().apply()
         }
+        Locale.localeVoice = "vi"
     }
 
     func configureMapView(_ mapView: NavigationMapView) {
