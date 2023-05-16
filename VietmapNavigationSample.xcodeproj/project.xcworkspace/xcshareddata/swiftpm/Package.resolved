@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/map-ios-sdk.git",
       "state" : {
-        "revision" : "fc17b958f437c566b806a680738572b4b7b13d6f",
-        "version" : "1.0.1"
+        "revision" : "23d776029799e2e246593fa03cc7e5e5817d3e28",
+        "version" : "1.0.4"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/vietmap-navigation.git",
       "state" : {
-        "revision" : "4538dd3812e7d2483b5054a41c73b39795e9d8d0",
-        "version" : "1.0.2"
+        "revision" : "a73235c0807f628f2b1de1fe1bf72aa365f3cb92",
+        "version" : "1.0.3"
       }
     },
     {

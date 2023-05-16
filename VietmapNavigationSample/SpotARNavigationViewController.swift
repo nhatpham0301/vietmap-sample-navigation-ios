@@ -27,7 +27,6 @@ public class SpotARNavigationViewController {
         customStyleMap()
         configureMapView()
         addListenerMap()
-        addSubViewMap()
         delegate?.wantsToPresent(viewController: navigationViewController)
     }
     
@@ -112,14 +111,14 @@ public class SpotARNavigationViewController {
     
     private func configureMapView() {
         navigationViewController.mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        navigationViewController.mapView?.userTrackingMode = .follow
-        navigationViewController.mapView?.logoView.isHidden = false
         navigationViewController.routeController.reroutesProactively = true
     }
 
     private func customStyleMap() {
         navigationViewController.mapView?.styleURL = URL(string: "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2");
         navigationViewController.mapView?.routeLineColor = UIColor.yellow
+        navigationViewController.mapView?.userTrackingMode = .follow
+        navigationViewController.mapView?.showsUserHeadingIndicator = true
     }
 
     private func addSubViewMap() {

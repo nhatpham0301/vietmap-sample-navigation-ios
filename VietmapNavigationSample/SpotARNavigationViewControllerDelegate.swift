@@ -7,7 +7,7 @@ extension SpotARNavigationViewController: NavigationViewControllerDelegate {
     // Return false to remain on the current leg, for example to allow the user to provide input.
     // If you return false, you must manually advance to the next leg. See the example above in `confirmationControllerDidConfirm(_:)`.
     public func navigationViewController(_ navigationViewController: NavigationViewController, didArriveAt waypoint: Waypoint) -> Bool {
-        delegate?.didCancel()
+        delegate?.didArrive(viewController: navigationViewController)
         return true
     }
     

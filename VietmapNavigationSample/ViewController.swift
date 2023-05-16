@@ -145,7 +145,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             return success(routes)
         }
 
-        _ = Directions.shared.calculate(options, completionHandler: handler)
+        Directions.shared.calculate(options, completionHandler: handler)
     }
 
     func startStyledNavigation() {
@@ -178,8 +178,9 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         mapView.navigationMapDelegate = self
+        mapView.routeLineColor = UIColor.yellow
         mapView.userTrackingMode = .follow
-        mapView.logoView.isHidden = true
+        mapView.showsUserHeadingIndicator = true
 
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))
@@ -235,11 +236,13 @@ extension ViewController: SpotARNavigationUIDelegate {
         presentAndRemoveMapview(viewController)
     }
     
-    func didArrive() {
-        self.navigationView?.dismiss(animated: true, completion: nil)
+    func didArrive(viewController: MapboxNavigation.NavigationViewController) {
+        print("did Arrive")
+        self.navigationViewController.cancelListener()
     }
     
     func didCancel() {
+        print("did Cancel")
         self.navigationViewController.cancelListener()
         self.navigationView?.dismiss(animated: true) {
             self.startMapView()
