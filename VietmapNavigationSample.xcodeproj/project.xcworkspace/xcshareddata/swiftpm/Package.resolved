@@ -5,62 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nhatpham0301/map-ios-sdk.git",
       "state" : {
-        "revision" : "23d776029799e2e246593fa03cc7e5e5817d3e28",
-        "version" : "1.0.4"
-      }
-    },
-    {
-      "identity" : "vietmap-core-navigation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-core-navigation.git",
-      "state" : {
-        "revision" : "55d6f2f890d1ccd20a1a5d5ee552974b8cd6d90e",
-        "version" : "1.0.3"
-      }
-    },
-    {
-      "identity" : "vietmap-directions",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-directions.git",
-      "state" : {
         "branch" : "main",
-        "revision" : "f78329c1f0fd3792d795c8c8ea7160828b93e82f"
-      }
-    },
-    {
-      "identity" : "vietmap-geocoder",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-geocoder.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "1483ef870718a5833989d248a1d2819d4af495e3"
-      }
-    },
-    {
-      "identity" : "vietmap-navigation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-navigation.git",
-      "state" : {
-        "revision" : "a73235c0807f628f2b1de1fe1bf72aa365f3cb92",
-        "version" : "1.0.3"
-      }
-    },
-    {
-      "identity" : "vietmap-speech",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-speech.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "b60ec16fe5cdfbf04552a9839518e8783af09b97"
-      }
-    },
-    {
-      "identity" : "vietmap-turf-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/vietmap-turf-swift.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "8d5643e55265b13f3c8e39539b08f06c5cccf6f1"
+        "revision" : "23d776029799e2e246593fa03cc7e5e5817d3e28"
       }
     }
   ],

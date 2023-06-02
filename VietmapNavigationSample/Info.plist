@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>VietMapURL</key>
+	<string>https://run.mocky.io/v3/2cdf49bc-40fe-4aa5-a992-1954c8fb298f</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>vi</string>
 	<key>CFBundleAllowMixedLocalizations</key>

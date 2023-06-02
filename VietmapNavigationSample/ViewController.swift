@@ -19,9 +19,22 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var clearMap: UIButton!
     @IBOutlet weak var bottomBarBackground: UIView!
     
-    var navigationViewController: SpotARNavigationViewController!
+    var navigationViewController: SpotARNavigationViewController?
+    var navigationCustomController: CustomUINavigationController?
     var navigationView: NavigationViewController?
     var mapboxRouteController: RouteController?
+    // vietmap
+    // map tile hiển thị được map nhưng không hiển thị polyline:
+//    var url = "https://run.mocky.io/v3/df67d2e8-164a-4a68-bb3d-52d147632f0f"
+    // map tile hiển thị được poyline nhưng không hiển thị được map: => vẽ map lên sai
+//    var url = "https://run.mocky.io/v3/af1ceb3e-2cb9-464f-a548-217f17ddb881"
+    // maptiler
+//    var url = "https://api.maptiler.com/maps/streets-v2/style.json?key=kSEJrARH5sHX6qmV6MYu"
+    // maptiler work ok với raster
+//    var url = "https://run.mocky.io/v3/2cdf49bc-40fe-4aa5-a992-1954c8fb298f"
+    let url = Bundle.main.object(forInfoDictionaryKey: "VietMapURL") as! String
+    
+    var arrivel: CLLocationCoordinate2D?
     
     // MARK: Properties
     var mapView: NavigationMapView? {
@@ -87,6 +100,45 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             }
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        alertController = UIAlertController(title: "Bắt đầu điều hướng", message: "Chọn kiểu điều hướng", preferredStyle: .actionSheet)
+        typealias ActionHandler = (UIAlertAction) -> Void
+        let defaultS: ActionHandler = {_ in self.startDefaultNavigation() }
+        let customS: ActionHandler = {_ in self.startCustomSNavigation() }
+        
+        let actionPayloads: [(String, UIAlertAction.Style, ActionHandler?)] = [
+            ("Default UI", .default, defaultS),
+            ("Custom UI", .default, customS),
+            ("Cancel", .cancel, nil),
+        ]
+        
+        actionPayloads
+            .map { payload in UIAlertAction(title: payload.0, style: payload.1, handler: payload.2)}
+            .forEach(alertController.addAction(_:))
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.startButton
+        }
+        
+    }
+    
+    func startDefaultNavigation() {
+        navigationViewController = SpotARNavigationViewController()
+        navigationViewController?.delegate = self
+        navigationViewController?.startNavigation(routes: routes!, simulated: simulationButton.isSelected)
+    }
+    
+    func startCustomSNavigation() {
+        guard let route = routes?.first else { return }
+        let storyboard = UIStoryboard.init(name: "CustomView", bundle: nil)
+        guard let customViewController = storyboard.instantiateViewController(identifier: "custom") as? CustomUINavigationController else {return}
+        customViewController.userRoute = route
+        customViewController.arrivel = arrivel
+        present(customViewController, animated: true, completion: nil)
+    }
 
     // MARK: Gesture Recognizer Handlers
     @objc func didLongPress(tap: UILongPressGestureRecognizer) {
@@ -99,10 +151,10 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         if waypoints.count > 1 {
             waypoints = Array(waypoints.suffix(1))
         }
-        
-        let coordinates = mapView.convert(tap.location(in: mapView), toCoordinateFrom: mapView)
+
+        arrivel = mapView.convert(tap.location(in: mapView), toCoordinateFrom: mapView)
         // Note: The destination name can be modified. The value is used in the top banner when arriving at a destination.
-        let waypoint = Waypoint(coordinate: coordinates, name: "Dropped Pin #\(waypoints.endIndex + 1)")
+        let waypoint = Waypoint(coordinate: arrivel!, name: "Điểm đến của bạn")
         waypoints.append(waypoint)
 
         requestRoute()
@@ -121,7 +173,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
-        startStyledNavigation()
+        present(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Public Methods
@@ -148,12 +200,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         Directions.shared.calculate(options, completionHandler: handler)
     }
 
-    func startStyledNavigation() {
-        navigationViewController = SpotARNavigationViewController()
-        navigationViewController.delegate = self
-        navigationViewController.startNavigation(routes: routes!, simulated: simulationButton.isSelected)
-    }
-
     func presentAndRemoveMapview(_ viewController: NavigationViewController) {
         self.navigationView = viewController
         present(viewController, animated: true) {
@@ -165,7 +211,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     func startMapView() {
         self.routes = nil
         self.waypoints = []
-        self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2"))
+        self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: url))
         simulationButton.isSelected = false
         // Reset the navigation styling to the defaults if we are returning from a presentation.
         if (presentedViewController != nil) {
@@ -185,6 +231,13 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))
         mapView.addGestureRecognizer(singleTap)
+        
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(swipe:)))
+        mapView.addGestureRecognizer(swipe)
+    }
+
+    @objc func didSwipe(swipe: UISwipeGestureRecognizer) {
+        print("ssssssss")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
@@ -195,6 +248,64 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             self.mapView?.showRoutes(routes)
             self.mapView?.showWaypoints(currentRoute)
         }
+        
+//        addLayer()
+//        styleRaster()
+        if let mapView = self.mapView, let style = mapView.style {
+            for source in style.sources {
+                print("source: \(source)")
+            }
+            for layer in style.layers {
+                print("Layer Identifier: \(layer.identifier)")
+                print("Layer Type: \(layer)")
+                // Log additional properties of the layer if needed
+            }
+        }
+    }
+    
+    func addLayer() {
+        var mapCoordinates: [CLLocationCoordinate2D] = []
+        let newCoord1 = CLLocationCoordinate2D(latitude: 10.757953, longitude: 106.674725)
+        let newCoord2 = CLLocationCoordinate2D(latitude: 10.757953, longitude: 106.674725)
+        mapCoordinates.append(newCoord1)
+        mapCoordinates.append(newCoord2)
+
+        let polyline = MGLPolyline(coordinates: mapCoordinates, count: UInt(mapCoordinates.count))
+        let source = MGLShapeSource(identifier: "vietmap-source", shape: polyline, options: nil)
+        mapView?.style?.addSource(source)
+        let layer = MGLLineStyleLayer(identifier: "vietmap-layer", source: source)
+        	
+    }
+    
+    func styleRaster() {
+        let rasterURL = URL(string: "ss")
+        let rasterTileSource = MGLRasterTileSource(identifier: "test", configurationURL: rasterURL!, tileSize: 512)
+        mapView?.style?.addSource(rasterTileSource)
+
+        let rasterLayer = MGLRasterStyleLayer(identifier: "test-tiles", source: rasterTileSource)
+        let opacityStops: [NSNumber: NSNumber] = [20.0: 1.0, 5.0: 0.0]
+        rasterLayer.rasterOpacity = NSExpression(format: "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)", opacityStops)
+        mapView?.style?.addLayer(rasterLayer)
+    }
+    
+    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        // Xử lý sự kiện di chuyển MapView tại đây
+        print("move map")
+    }
+    
+    func mapViewWillStartLoadingMap(_ mapView: MGLMapView) {
+        // Xử lý sự kiện tại đây
+        print("Bản đồ bắt đầu tải...")
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
+            // Xử lý sự kiện tại đây
+        print("Bản đồ đã hoàn thành tải và hiển thị.")
+    }
+    
+    func mapViewWillStartRenderingMap(_ mapView: MGLMapView) {
+            // Xử lý sự kiện tại đây
+        print("Bản đồ đã rerender.")
     }
 }
 
@@ -238,12 +349,16 @@ extension ViewController: SpotARNavigationUIDelegate {
     
     func didArrive(viewController: MapboxNavigation.NavigationViewController) {
         print("did Arrive")
-        self.navigationViewController.cancelListener()
+        if (self.navigationViewController != nil) {
+            self.navigationViewController?.cancelListener()
+        }
     }
     
     func didCancel() {
         print("did Cancel")
-        self.navigationViewController.cancelListener()
+        if (self.navigationViewController != nil) {
+            self.navigationViewController?.cancelListener()
+        }
         self.navigationView?.dismiss(animated: true) {
             self.startMapView()
         }

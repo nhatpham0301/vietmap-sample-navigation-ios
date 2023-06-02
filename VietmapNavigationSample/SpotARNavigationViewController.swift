@@ -11,6 +11,7 @@ public class SpotARNavigationViewController {
     public var delegate: SpotARNavigationUIDelegate?
     private var currentLocation: CLLocation!
     private var isFirstRender: Bool = false
+    let url = Bundle.main.object(forInfoDictionaryKey: "VietMapURL") as! String
     
     public init() {}
 
@@ -43,6 +44,8 @@ public class SpotARNavigationViewController {
     @objc func progressDidReroute(_ notification: Notification) {
         if let userInfo = notification.object as? RouteController {
             navigationViewController.mapView?.showRoutes([userInfo.routeProgress.route])
+            centerMap(userInfo.locationManager.location!)
+            navigationViewController.mapView?.tracksUserCourse = true
         }
    }
     
@@ -52,22 +55,24 @@ public class SpotARNavigationViewController {
         currentLocation = location
         setCenterIsFirst(location)
         addManeuverArrow(routeProgress)
-        updateUserPuck(location)
-        readjustMapCenter()
     }
     
     private func setCenterIsFirst(_ location: CLLocation) {
         if !isFirstRender {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                let camera = MGLMapCamera(
-                    lookingAtCenter: location.coordinate,
-                    acrossDistance: 500,
-                    pitch: 75,
-                    heading: location.course
-                )
-                self.navigationViewController.mapView?.setCamera(camera, animated: true)
-            }
+            centerMap(location)
             isFirstRender = true
+        }
+    }
+    
+    private func centerMap(_ location: CLLocation) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let camera = MGLMapCamera(
+                lookingAtCenter: location.coordinate,
+                acrossDistance: 500,
+                pitch: 75,
+                heading: location.course
+            )
+            self.navigationViewController.mapView?.setCamera(camera, animated: true)
         }
     }
     
@@ -115,7 +120,7 @@ public class SpotARNavigationViewController {
     }
 
     private func customStyleMap() {
-        navigationViewController.mapView?.styleURL = URL(string: "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2");
+        navigationViewController.mapView?.styleURL = URL(string: url);
         navigationViewController.mapView?.routeLineColor = UIColor.yellow
         navigationViewController.mapView?.userTrackingMode = .follow
         navigationViewController.mapView?.showsUserHeadingIndicator = true
