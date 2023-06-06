@@ -16,7 +16,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     var userRoute: Route?
     var simulateLocation = false
     var routeController: RouteController!
-    var routeMapViewController: RouteMapViewController!
 
     private var bottomSheetTopConstraint: NSLayoutConstraint!
     private var bottomSheetBottomConstraint: NSLayoutConstraint!
@@ -36,11 +35,12 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     let currentTime = Date()
     let calendar = Calendar.current
     var maneuverView = ManeuverView()
-    static let maneuverViewSize = CGSize(width: 38, height: 38)
+    static let maneuverViewSize = CGSize(width: 45, height: 45)
     var test: CGFloat = 0.0;
     var voiceController = RouteVoiceController()
     var muted : Bool = false
     var clickRencenter : Bool = false
+    var clickOverview : Bool = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: NavigationMapView!
@@ -54,30 +54,23 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     @IBOutlet weak var timeRemain: UILabel!
     @IBOutlet weak var sound: UIImageView!
     @IBOutlet weak var speed: UILabel!
-    @IBOutlet weak var recenter: UIImageView!
-    @IBOutlet weak var overView: UIImageView!
     @IBOutlet weak var inProgressNavigation: UIProgressView!
     @IBOutlet weak var currentStreet: UILabel!
-    
-    
+    @IBOutlet weak var recenter: UIButton!
+    @IBOutlet weak var overView: UIButton!
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         recenter.isHidden = true
         inProgressNavigation.progress = 0
         bottomSheetInitialY = bottomSheetView.frame.origin.y
-//        overView.isHidden = true
         recenter.isHidden = true
         
         let locationManager = simulateLocation ? SimulatedLocationManager(route: userRoute!) : NavigationLocationManager()
         routeController = RouteController(along: userRoute!, locationManager: locationManager)
         routeController.delegate = self
-        routeMapViewController = RouteMapViewController()
-        routeMapViewController.routeController = routeController
         customStyleMap()
         mapView.recenterMap()
-        
-        // style image
-        overView.transform = overView.transform.rotated(by: .pi / 2)
         
         marker = MGLPointAnnotation()
         marker?.coordinate = arrivel!
@@ -187,7 +180,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
             totalDistanceKM = routeProgress.distanceRemaining
         }
         timeRemain.text = String(format: "%.f", routeProgress.durationRemaining/60)
-        speed.text = "\(String(format: "%.f", check(mapView.userLocation?.location?.speed ?? 0.0))) m/s"
+//        speed.text = "\(String(format: "%.f", check(mapView.userLocation?.location?.speed ?? 0.0))) m/s"
         if let instructions = routeProgress.currentLegProgress.currentStepProgress.step.instructionsDisplayedAlongStep?.last {
             print(instructions.primaryInstruction.maneuverType)
             maneuverView.visualInstruction = instructions.primaryInstruction
@@ -282,11 +275,17 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         if (clickRencenter == false) {
             self.mapView.tracksUserCourse = false
             recenter.isHidden = false
-            print("move map")
         } else {
             clickRencenter = false
         }
-       
+        
+        if (clickOverview == false) {
+            self.mapView.tracksUserCourse = false
+            overView.isHidden = false
+        } else {
+            clickOverview = false
+        }
+        print("move map")
     }
     
     private func getNavigationLocationManager(simulated: Bool) -> NavigationLocationManager {
@@ -308,6 +307,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         mapView.tracksUserCourse = true
         updateCameraAltitude(for: routeController.routeProgress)
         recenter.isHidden = true
+        overView.isHidden = false
     }
     
     func updateCameraAltitude(for routeProgress: RouteProgress) {
@@ -348,6 +348,10 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
 
     
     @objc func overViewMap(tap: UITapGestureRecognizer) {
+        clickOverview = true
+        overView.isHidden = true
+        recenter.isHidden = false
+        self.mapView.tracksUserCourse = false
         if let coordinates = routeController?.routeProgress.route.coordinates, let userLocation = routeController?.locationManager.location?.coordinate {
             mapView.setOverheadCameraView(from: userLocation, along: coordinates, for: overheadInsets)
         }

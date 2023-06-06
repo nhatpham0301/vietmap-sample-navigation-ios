@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE09FB672A2D88E500BDEB8E /* MapboxCoreNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB552A2D88E000BDEB8E /* MapboxCoreNavigation.xcframework */; };
+		BE09FB682A2D88E500BDEB8E /* MapboxCoreNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB552A2D88E000BDEB8E /* MapboxCoreNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB692A2D88E600BDEB8E /* MapboxDirections.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB592A2D88E000BDEB8E /* MapboxDirections.xcframework */; };
+		BE09FB6A2A2D88E600BDEB8E /* MapboxDirections.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB592A2D88E000BDEB8E /* MapboxDirections.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB6B2A2D88E800BDEB8E /* MapboxGeocoder.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB582A2D88E000BDEB8E /* MapboxGeocoder.xcframework */; };
+		BE09FB6C2A2D88E800BDEB8E /* MapboxGeocoder.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB582A2D88E000BDEB8E /* MapboxGeocoder.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB6D2A2D88EA00BDEB8E /* MapboxMobileEvents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5C2A2D88E000BDEB8E /* MapboxMobileEvents.xcframework */; };
+		BE09FB6E2A2D88EA00BDEB8E /* MapboxMobileEvents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5C2A2D88E000BDEB8E /* MapboxMobileEvents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB6F2A2D88EE00BDEB8E /* MapboxNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5B2A2D88E000BDEB8E /* MapboxNavigation.xcframework */; };
+		BE09FB702A2D88EE00BDEB8E /* MapboxNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5B2A2D88E000BDEB8E /* MapboxNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB712A2D88F500BDEB8E /* MapboxSpeech.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5A2A2D88E000BDEB8E /* MapboxSpeech.xcframework */; };
+		BE09FB722A2D88F500BDEB8E /* MapboxSpeech.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5A2A2D88E000BDEB8E /* MapboxSpeech.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB732A2D88F600BDEB8E /* Polyline.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */; };
+		BE09FB742A2D88F600BDEB8E /* Polyline.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB752A2D88F800BDEB8E /* Solar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB572A2D88E000BDEB8E /* Solar.xcframework */; };
+		BE09FB762A2D88F800BDEB8E /* Solar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB572A2D88E000BDEB8E /* Solar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE09FB772A2D88F900BDEB8E /* Turf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */; };
+		BE09FB782A2D88F900BDEB8E /* Turf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE23754B2A2DEE8B00C48DEF /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = BE23754A2A2DEE8B00C48DEF /* Mapbox */; };
 		BEAB825429EE591E00B910D2 /* SpotARVisualInstructionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */; };
 		BEAB825529EE591E00B910D2 /* SpotARNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */; };
 		BEAB825629EE591E00B910D2 /* SpotARVoiceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */; };
@@ -16,25 +35,6 @@
 		BED4ACDD2A1C67FD004F0AAC /* CustomUINavigaitonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4ACDC2A1C67FD004F0AAC /* CustomUINavigaitonController.swift */; };
 		BED4ACDF2A1C6C3F004F0AAC /* CustomView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED4ACDE2A1C6C3F004F0AAC /* CustomView.storyboard */; };
 		BED4ACE12A1C6D04004F0AAC /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4ACE02A1C6D04004F0AAC /* CustomUIView.swift */; };
-		BED4ACE42A1F6DBA004F0AAC /* Mapbox in Frameworks */ = {isa = PBXBuildFile; productRef = BED4ACE32A1F6DBA004F0AAC /* Mapbox */; };
-		BED4AD0F2A1F71B3004F0AAC /* MapboxCoreNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFE2A1F71AE004F0AAC /* MapboxCoreNavigation.xcframework */; };
-		BED4AD102A1F71B3004F0AAC /* MapboxCoreNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFE2A1F71AE004F0AAC /* MapboxCoreNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD112A1F71B4004F0AAC /* MapboxDirections.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD012A1F71AE004F0AAC /* MapboxDirections.xcframework */; };
-		BED4AD122A1F71B4004F0AAC /* MapboxDirections.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD012A1F71AE004F0AAC /* MapboxDirections.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD132A1F71B5004F0AAC /* MapboxGeocoder.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFD2A1F71AE004F0AAC /* MapboxGeocoder.xcframework */; };
-		BED4AD142A1F71B5004F0AAC /* MapboxGeocoder.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFD2A1F71AE004F0AAC /* MapboxGeocoder.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD152A1F71B7004F0AAC /* MapboxMobileEvents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD042A1F71AE004F0AAC /* MapboxMobileEvents.xcframework */; };
-		BED4AD162A1F71B7004F0AAC /* MapboxMobileEvents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD042A1F71AE004F0AAC /* MapboxMobileEvents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD192A1F71BA004F0AAC /* MapboxSpeech.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD032A1F71AE004F0AAC /* MapboxSpeech.xcframework */; };
-		BED4AD1A2A1F71BA004F0AAC /* MapboxSpeech.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD032A1F71AE004F0AAC /* MapboxSpeech.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD1B2A1F71BB004F0AAC /* Polyline.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD052A1F71AF004F0AAC /* Polyline.xcframework */; };
-		BED4AD1C2A1F71BB004F0AAC /* Polyline.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD052A1F71AF004F0AAC /* Polyline.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD1D2A1F71BC004F0AAC /* Solar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD002A1F71AE004F0AAC /* Solar.xcframework */; };
-		BED4AD1E2A1F71BD004F0AAC /* Solar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD002A1F71AE004F0AAC /* Solar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD1F2A1F71D5004F0AAC /* Turf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFF2A1F71AE004F0AAC /* Turf.xcframework */; };
-		BED4AD202A1F71D5004F0AAC /* Turf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4ACFF2A1F71AE004F0AAC /* Turf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BED4AD232A205197004F0AAC /* MapboxNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD212A20517F004F0AAC /* MapboxNavigation.xcframework */; };
-		BED4AD242A205197004F0AAC /* MapboxNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BED4AD212A20517F004F0AAC /* MapboxNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEF5F73929E941BA0005E9A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */; };
 		BEF5F73B29E941BA0005E9A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */; };
 		BEF5F73D29E941BA0005E9A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5F73C29E941BA0005E9A6 /* ViewController.swift */; };
@@ -49,15 +49,15 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BED4AD1A2A1F71BA004F0AAC /* MapboxSpeech.xcframework in Embed Frameworks */,
-				BED4AD1E2A1F71BD004F0AAC /* Solar.xcframework in Embed Frameworks */,
-				BED4AD122A1F71B4004F0AAC /* MapboxDirections.xcframework in Embed Frameworks */,
-				BED4AD162A1F71B7004F0AAC /* MapboxMobileEvents.xcframework in Embed Frameworks */,
-				BED4AD142A1F71B5004F0AAC /* MapboxGeocoder.xcframework in Embed Frameworks */,
-				BED4AD102A1F71B3004F0AAC /* MapboxCoreNavigation.xcframework in Embed Frameworks */,
-				BED4AD242A205197004F0AAC /* MapboxNavigation.xcframework in Embed Frameworks */,
-				BED4AD202A1F71D5004F0AAC /* Turf.xcframework in Embed Frameworks */,
-				BED4AD1C2A1F71BB004F0AAC /* Polyline.xcframework in Embed Frameworks */,
+				BE09FB722A2D88F500BDEB8E /* MapboxSpeech.xcframework in Embed Frameworks */,
+				BE09FB762A2D88F800BDEB8E /* Solar.xcframework in Embed Frameworks */,
+				BE09FB6A2A2D88E600BDEB8E /* MapboxDirections.xcframework in Embed Frameworks */,
+				BE09FB6E2A2D88EA00BDEB8E /* MapboxMobileEvents.xcframework in Embed Frameworks */,
+				BE09FB6C2A2D88E800BDEB8E /* MapboxGeocoder.xcframework in Embed Frameworks */,
+				BE09FB682A2D88E500BDEB8E /* MapboxCoreNavigation.xcframework in Embed Frameworks */,
+				BE09FB782A2D88F900BDEB8E /* Turf.xcframework in Embed Frameworks */,
+				BE09FB702A2D88EE00BDEB8E /* MapboxNavigation.xcframework in Embed Frameworks */,
+				BE09FB742A2D88F600BDEB8E /* Polyline.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +65,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BE09FB552A2D88E000BDEB8E /* MapboxCoreNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxCoreNavigation.xcframework; path = Carthage/Build/MapboxCoreNavigation.xcframework; sourceTree = "<group>"; };
+		BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
+		BE09FB572A2D88E000BDEB8E /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
+		BE09FB582A2D88E000BDEB8E /* MapboxGeocoder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxGeocoder.xcframework; path = Carthage/Build/MapboxGeocoder.xcframework; sourceTree = "<group>"; };
+		BE09FB592A2D88E000BDEB8E /* MapboxDirections.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxDirections.xcframework; path = Carthage/Build/MapboxDirections.xcframework; sourceTree = "<group>"; };
+		BE09FB5A2A2D88E000BDEB8E /* MapboxSpeech.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxSpeech.xcframework; path = Carthage/Build/MapboxSpeech.xcframework; sourceTree = "<group>"; };
+		BE09FB5B2A2D88E000BDEB8E /* MapboxNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxNavigation.xcframework; path = Carthage/Build/MapboxNavigation.xcframework; sourceTree = "<group>"; };
+		BE09FB5C2A2D88E000BDEB8E /* MapboxMobileEvents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxMobileEvents.xcframework; path = Carthage/Build/MapboxMobileEvents.xcframework; sourceTree = "<group>"; };
+		BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Turf.xcframework; path = Carthage/Build/Turf.xcframework; sourceTree = "<group>"; };
 		BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVisualInstructionDelegate.swift; sourceTree = "<group>"; };
 		BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewController.swift; sourceTree = "<group>"; };
 		BEAB825129EE591D00B910D2 /* SpotARVoiceControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVoiceControllerDelegate.swift; sourceTree = "<group>"; };
@@ -74,15 +83,6 @@
 		BED4ACDC2A1C67FD004F0AAC /* CustomUINavigaitonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUINavigaitonController.swift; sourceTree = "<group>"; };
 		BED4ACDE2A1C6C3F004F0AAC /* CustomView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomView.storyboard; sourceTree = "<group>"; };
 		BED4ACE02A1C6D04004F0AAC /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
-		BED4ACFD2A1F71AE004F0AAC /* MapboxGeocoder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxGeocoder.xcframework; path = Carthage/Build/MapboxGeocoder.xcframework; sourceTree = "<group>"; };
-		BED4ACFE2A1F71AE004F0AAC /* MapboxCoreNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxCoreNavigation.xcframework; path = Carthage/Build/MapboxCoreNavigation.xcframework; sourceTree = "<group>"; };
-		BED4ACFF2A1F71AE004F0AAC /* Turf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Turf.xcframework; path = Carthage/Build/Turf.xcframework; sourceTree = "<group>"; };
-		BED4AD002A1F71AE004F0AAC /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
-		BED4AD012A1F71AE004F0AAC /* MapboxDirections.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxDirections.xcframework; path = Carthage/Build/MapboxDirections.xcframework; sourceTree = "<group>"; };
-		BED4AD032A1F71AE004F0AAC /* MapboxSpeech.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxSpeech.xcframework; path = Carthage/Build/MapboxSpeech.xcframework; sourceTree = "<group>"; };
-		BED4AD042A1F71AE004F0AAC /* MapboxMobileEvents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxMobileEvents.xcframework; path = Carthage/Build/MapboxMobileEvents.xcframework; sourceTree = "<group>"; };
-		BED4AD052A1F71AF004F0AAC /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
-		BED4AD212A20517F004F0AAC /* MapboxNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxNavigation.xcframework; path = Carthage/Build/MapboxNavigation.xcframework; sourceTree = "<group>"; };
 		BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VietmapNavigationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF5F73829E941BA0005E9A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEF5F73A29E941BA0005E9A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,16 +97,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED4AD0F2A1F71B3004F0AAC /* MapboxCoreNavigation.xcframework in Frameworks */,
-				BED4AD112A1F71B4004F0AAC /* MapboxDirections.xcframework in Frameworks */,
-				BED4ACE42A1F6DBA004F0AAC /* Mapbox in Frameworks */,
-				BED4AD1B2A1F71BB004F0AAC /* Polyline.xcframework in Frameworks */,
-				BED4AD232A205197004F0AAC /* MapboxNavigation.xcframework in Frameworks */,
-				BED4AD192A1F71BA004F0AAC /* MapboxSpeech.xcframework in Frameworks */,
-				BED4AD132A1F71B5004F0AAC /* MapboxGeocoder.xcframework in Frameworks */,
-				BED4AD152A1F71B7004F0AAC /* MapboxMobileEvents.xcframework in Frameworks */,
-				BED4AD1F2A1F71D5004F0AAC /* Turf.xcframework in Frameworks */,
-				BED4AD1D2A1F71BC004F0AAC /* Solar.xcframework in Frameworks */,
+				BE09FB672A2D88E500BDEB8E /* MapboxCoreNavigation.xcframework in Frameworks */,
+				BE09FB692A2D88E600BDEB8E /* MapboxDirections.xcframework in Frameworks */,
+				BE09FB6F2A2D88EE00BDEB8E /* MapboxNavigation.xcframework in Frameworks */,
+				BE09FB732A2D88F600BDEB8E /* Polyline.xcframework in Frameworks */,
+				BE09FB712A2D88F500BDEB8E /* MapboxSpeech.xcframework in Frameworks */,
+				BE23754B2A2DEE8B00C48DEF /* Mapbox in Frameworks */,
+				BE09FB6B2A2D88E800BDEB8E /* MapboxGeocoder.xcframework in Frameworks */,
+				BE09FB6D2A2D88EA00BDEB8E /* MapboxMobileEvents.xcframework in Frameworks */,
+				BE09FB772A2D88F900BDEB8E /* Turf.xcframework in Frameworks */,
+				BE09FB752A2D88F800BDEB8E /* Solar.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,15 +116,15 @@
 		BE9F6F5729ECE861008E31FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BED4AD212A20517F004F0AAC /* MapboxNavigation.xcframework */,
-				BED4ACFE2A1F71AE004F0AAC /* MapboxCoreNavigation.xcframework */,
-				BED4AD012A1F71AE004F0AAC /* MapboxDirections.xcframework */,
-				BED4ACFD2A1F71AE004F0AAC /* MapboxGeocoder.xcframework */,
-				BED4AD042A1F71AE004F0AAC /* MapboxMobileEvents.xcframework */,
-				BED4AD032A1F71AE004F0AAC /* MapboxSpeech.xcframework */,
-				BED4AD052A1F71AF004F0AAC /* Polyline.xcframework */,
-				BED4AD002A1F71AE004F0AAC /* Solar.xcframework */,
-				BED4ACFF2A1F71AE004F0AAC /* Turf.xcframework */,
+				BE09FB552A2D88E000BDEB8E /* MapboxCoreNavigation.xcframework */,
+				BE09FB592A2D88E000BDEB8E /* MapboxDirections.xcframework */,
+				BE09FB582A2D88E000BDEB8E /* MapboxGeocoder.xcframework */,
+				BE09FB5C2A2D88E000BDEB8E /* MapboxMobileEvents.xcframework */,
+				BE09FB5B2A2D88E000BDEB8E /* MapboxNavigation.xcframework */,
+				BE09FB5A2A2D88E000BDEB8E /* MapboxSpeech.xcframework */,
+				BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */,
+				BE09FB572A2D88E000BDEB8E /* Solar.xcframework */,
+				BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 			);
 			name = VietmapNavigationSample;
 			packageProductDependencies = (
-				BED4ACE32A1F6DBA004F0AAC /* Mapbox */,
+				BE23754A2A2DEE8B00C48DEF /* Mapbox */,
 			);
 			productName = VietmapNavigationSample;
 			productReference = BEF5F73529E941BA0005E9A6 /* VietmapNavigationSample.app */;
@@ -225,7 +225,7 @@
 			);
 			mainGroup = BEF5F72C29E941BA0005E9A6;
 			packageReferences = (
-				BED4ACE22A1F6DBA004F0AAC /* XCRemoteSwiftPackageReference "map-ios-sdk" */,
+				BE2375492A2DEE8B00C48DEF /* XCRemoteSwiftPackageReference "maps-sdk-ios" */,
 			);
 			productRefGroup = BEF5F73629E941BA0005E9A6 /* Products */;
 			projectDirPath = "";
@@ -423,7 +423,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation33;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -459,7 +459,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation33;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietmap.navigaiton.VietmapSampleNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -492,20 +492,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BED4ACE22A1F6DBA004F0AAC /* XCRemoteSwiftPackageReference "map-ios-sdk" */ = {
+		BE2375492A2DEE8B00C48DEF /* XCRemoteSwiftPackageReference "maps-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nhatpham0301/map-ios-sdk.git";
+			repositoryURL = "https://github.com/vietmap-company/maps-sdk-ios.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BED4ACE32A1F6DBA004F0AAC /* Mapbox */ = {
+		BE23754A2A2DEE8B00C48DEF /* Mapbox */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BED4ACE22A1F6DBA004F0AAC /* XCRemoteSwiftPackageReference "map-ios-sdk" */;
+			package = BE2375492A2DEE8B00C48DEF /* XCRemoteSwiftPackageReference "maps-sdk-ios" */;
 			productName = Mapbox;
 		};
 /* End XCSwiftPackageProductDependency section */

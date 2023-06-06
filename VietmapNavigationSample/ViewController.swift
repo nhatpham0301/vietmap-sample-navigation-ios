@@ -23,15 +23,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     var navigationCustomController: CustomUINavigationController?
     var navigationView: NavigationViewController?
     var mapboxRouteController: RouteController?
-    // vietmap
-    // map tile hiển thị được map nhưng không hiển thị polyline:
-//    var url = "https://run.mocky.io/v3/df67d2e8-164a-4a68-bb3d-52d147632f0f"
-    // map tile hiển thị được poyline nhưng không hiển thị được map: => vẽ map lên sai
-//    var url = "https://run.mocky.io/v3/af1ceb3e-2cb9-464f-a548-217f17ddb881"
-    // maptiler
-//    var url = "https://api.maptiler.com/maps/streets-v2/style.json?key=kSEJrARH5sHX6qmV6MYu"
-    // maptiler work ok với raster
-//    var url = "https://run.mocky.io/v3/2cdf49bc-40fe-4aa5-a992-1954c8fb298f"
     let url = Bundle.main.object(forInfoDictionaryKey: "VietMapURL") as! String
     
     var arrivel: CLLocationCoordinate2D?
@@ -186,7 +177,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         waypoints.insert(userWaypoint, at: 0)
 
         let routeOptions = NavigationRouteOptions(waypoints: waypoints)
-        
+        routeOptions.shapeFormat = .polyline6
         requestRoute(with: routeOptions, success: defaultSuccess, failure: defaultFailure)
     }
 
@@ -196,7 +187,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             guard let routes = potentialRoutes else { return }
             return success(routes)
         }
-
+        let apiUrl = Directions.shared.url(forCalculating: options)
+        print("API Request URL: \(apiUrl)")
         Directions.shared.calculate(options, completionHandler: handler)
     }
 
@@ -248,44 +240,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             self.mapView?.showRoutes(routes)
             self.mapView?.showWaypoints(currentRoute)
         }
-        
-//        addLayer()
-//        styleRaster()
-        if let mapView = self.mapView, let style = mapView.style {
-            for source in style.sources {
-                print("source: \(source)")
-            }
-            for layer in style.layers {
-                print("Layer Identifier: \(layer.identifier)")
-                print("Layer Type: \(layer)")
-                // Log additional properties of the layer if needed
-            }
-        }
-    }
-    
-    func addLayer() {
-        var mapCoordinates: [CLLocationCoordinate2D] = []
-        let newCoord1 = CLLocationCoordinate2D(latitude: 10.757953, longitude: 106.674725)
-        let newCoord2 = CLLocationCoordinate2D(latitude: 10.757953, longitude: 106.674725)
-        mapCoordinates.append(newCoord1)
-        mapCoordinates.append(newCoord2)
-
-        let polyline = MGLPolyline(coordinates: mapCoordinates, count: UInt(mapCoordinates.count))
-        let source = MGLShapeSource(identifier: "vietmap-source", shape: polyline, options: nil)
-        mapView?.style?.addSource(source)
-        let layer = MGLLineStyleLayer(identifier: "vietmap-layer", source: source)
-        	
-    }
-    
-    func styleRaster() {
-        let rasterURL = URL(string: "ss")
-        let rasterTileSource = MGLRasterTileSource(identifier: "test", configurationURL: rasterURL!, tileSize: 512)
-        mapView?.style?.addSource(rasterTileSource)
-
-        let rasterLayer = MGLRasterStyleLayer(identifier: "test-tiles", source: rasterTileSource)
-        let opacityStops: [NSNumber: NSNumber] = [20.0: 1.0, 5.0: 0.0]
-        rasterLayer.rasterOpacity = NSExpression(format: "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)", opacityStops)
-        mapView?.style?.addLayer(rasterLayer)
     }
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {

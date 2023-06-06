@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "map-ios-sdk",
+      "identity" : "maps-sdk-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nhatpham0301/map-ios-sdk.git",
+      "location" : "https://github.com/vietmap-company/maps-sdk-ios.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "23d776029799e2e246593fa03cc7e5e5817d3e28"
+        "revision" : "b2d1292aecb12cf8cc5c71cd362928763c9794ba",
+        "version" : "1.0.0"
       }
     }
   ],

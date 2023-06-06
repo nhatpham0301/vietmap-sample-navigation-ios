@@ -9,7 +9,7 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>MGLMapboxAPIBaseURL</key>
-	<string>https://api.mapbox.com/</string>
+	<string>https://maps.vnpost.vn/navigation_dev/route/</string>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1Ijoic2VubmQiLCJhIjoiY2tkcmdzbDB4MDhzcDJ6bzdoOXNwazduMSJ9.in-0A1ZX6yzIMtnJcLdcRw</string>
 	<key>UIApplicationSceneManifest</key>
