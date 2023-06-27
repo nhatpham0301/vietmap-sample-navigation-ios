@@ -41,6 +41,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     var muted : Bool = false
     var clickRencenter : Bool = false
     var clickOverview : Bool = false
+    var isLoadingFinshied : Bool = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: NavigationMapView!
@@ -61,10 +62,9 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        recenter.isHidden = true
+        recenter.isHidden = false
         inProgressNavigation.progress = 0
         bottomSheetInitialY = bottomSheetView.frame.origin.y
-        recenter.isHidden = true
         
         let locationManager = simulateLocation ? SimulatedLocationManager(route: userRoute!) : NavigationLocationManager()
         routeController = RouteController(along: userRoute!, locationManager: locationManager)
@@ -151,7 +151,9 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     @objc func progressDidChange(_ notification: NSNotification) {
         let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey.routeProgressKey] as! RouteProgress
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
-        mapView.updateCourseTracking(location: location, animated: true)
+        // Update the user puck
+        // let camera = MGLMapCamera(lookingAtCenter: location.coordinate, fromDistance: 120, pitch: 60, heading: location.course)
+        // mapView.updateCourseTracking(location: location, camera: camera, animated: true)
         handleRoute(routeProgress)
     }
     
@@ -269,23 +271,19 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     public func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         self.mapView.showRoutes([routeController.routeProgress.route])
         self.mapView.addAnnotation(marker!)
+        self.mapView.tracksUserCourse = true
+        self.isLoadingFinshied = true
     }
     
     public func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        if (clickRencenter == false) {
-            self.mapView.tracksUserCourse = false
-            recenter.isHidden = false
-        } else {
-            clickRencenter = false
-        }
-        
-        if (clickOverview == false) {
-            self.mapView.tracksUserCourse = false
-            overView.isHidden = false
-        } else {
-            clickOverview = false
-        }
-        print("move map")
+//        if (isLoadingFinshied) {
+//            self.mapView.tracksUserCourse = false
+//            if (clickRencenter == true) {
+//                self.mapView.tracksUserCourse = true
+//                clickRencenter = false
+//            }
+//            print("move map")
+//        }
     }
     
     private func getNavigationLocationManager(simulated: Bool) -> NavigationLocationManager {
@@ -306,8 +304,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         mapView.trackUpdateCourse = false
         mapView.tracksUserCourse = true
         updateCameraAltitude(for: routeController.routeProgress)
-        recenter.isHidden = true
-        overView.isHidden = false
     }
     
     func updateCameraAltitude(for routeProgress: RouteProgress) {
@@ -349,8 +345,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     
     @objc func overViewMap(tap: UITapGestureRecognizer) {
         clickOverview = true
-        overView.isHidden = true
-        recenter.isHidden = false
         self.mapView.tracksUserCourse = false
         if let coordinates = routeController?.routeProgress.route.coordinates, let userLocation = routeController?.locationManager.location?.coordinate {
             mapView.setOverheadCameraView(from: userLocation, along: coordinates, for: overheadInsets)

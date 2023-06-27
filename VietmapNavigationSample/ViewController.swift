@@ -176,7 +176,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         let userWaypoint = Waypoint(location: mapView.userLocation!.location!, heading: mapView.userLocation?.heading, name: "User location")
         waypoints.insert(userWaypoint, at: 0)
 
-        let routeOptions = NavigationRouteOptions(waypoints: waypoints)
+        let routeOptions = NavigationRouteOptions(waypoints: waypoints, profileIdentifier: .automobile)
         routeOptions.shapeFormat = .polyline6
         requestRoute(with: routeOptions, success: defaultSuccess, failure: defaultFailure)
     }
@@ -218,7 +218,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView.navigationMapDelegate = self
         mapView.routeLineColor = UIColor.yellow
         mapView.userTrackingMode = .follow
-        mapView.showsUserHeadingIndicator = true
 
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))

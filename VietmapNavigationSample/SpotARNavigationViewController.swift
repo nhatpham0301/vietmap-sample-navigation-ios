@@ -18,7 +18,7 @@ public class SpotARNavigationViewController {
     public func startNavigation(routes: [Route], simulated: Bool = false) {
         guard let route = routes.first else { return }
         self.routes = routes
-        
+         
         navigationViewController = NavigationViewController(
             for: route,
             styles: [NightStyle()],
@@ -54,6 +54,7 @@ public class SpotARNavigationViewController {
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
         currentLocation = location
         setCenterIsFirst(location)
+//        updateUserPuck(location)
         addManeuverArrow(routeProgress)
     }
     
