@@ -14,12 +14,12 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     // MARK: - IBOutlets
     @IBOutlet weak var longPressHintView: UIView!
-    @IBOutlet weak var simulationButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var clearMap: UIButton!
     @IBOutlet weak var bottomBarBackground: UIView!
     @IBOutlet weak var searchLocation: SearchTextField!
+    @IBOutlet weak var clearMapV: UIButton!
     
     var navigationViewController: SpotARNavigationViewController?
     var navigationCustomController: CustomUINavigationController?
@@ -71,9 +71,10 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         self?.mapView?.removeWaypoints()
         self?.routes = routes
         self?.waypoints = current.routeOptions.waypoints
-        self?.clearMap.isHidden = false
+        self?.clearMapV.isEnabled = true
         self?.longPressHintView.isHidden = true
-//        self?.mapView?.setOverheadCameraView(from: (self?.waypoints.first!.coordinate)!, along: current.coordinates!, for: self!.overheadInsets)
+        self?.mapView?.setOverheadCameraView(from: (self?.waypoints.first!.coordinate)!, along: current.coordinates!, for: self!.overheadInsets)
+        self?.mapView?.userTrackingMode = .none
     }
 
     fileprivate lazy var defaultFailure: RouteRequestFailure = { [weak self] (error) in
@@ -169,7 +170,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
 
         // handle with route
         searchLocation.itemSelectionHandler = { filteredResults, itemPosition in
-            self.view.endEditing(true)
             // Just in case you need the item position
             let item = filteredResults[itemPosition]
             // Do whatever you want with the picked item
@@ -179,6 +179,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
                     self.handleRequestRoute(arrivel: results!)
                 }
             }
+            self.searchLocation.keyboardIsShowing = false
+            self.view.endEditing(true)
         }
         
         searchLocation.userStoppedTypingHandler = {
@@ -199,7 +201,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     func startDefaultNavigation() {
         navigationViewController = SpotARNavigationViewController()
         navigationViewController?.delegate = self
-        navigationViewController?.startNavigation(routes: routes!, simulated: simulationButton.isSelected)
+        navigationViewController?.startNavigation(routes: routes!, simulated: false)
     }
     
     func startCustomSNavigation() {
@@ -208,7 +210,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         guard let customViewController = storyboard.instantiateViewController(identifier: "custom") as? CustomUINavigationController else {return}
         customViewController.userRoute = route
         customViewController.arrivel = arrivel
-        customViewController.simulateLocation = simulationButton.isSelected
+        customViewController.simulateLocation = false
         present(customViewController, animated: true, completion: nil)
     }
 
@@ -231,10 +233,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         requestRoute()
     }
 
-    @IBAction func simulateButtonPressed(_ sender: Any) {
-        simulationButton.isSelected = !simulationButton.isSelected
-    }
-
     @IBAction func clearMapPressed(_ sender: Any) {
         clearMap.isHidden = true
         mapView?.removeRoutes()
@@ -242,6 +240,17 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         waypoints.removeAll()
         longPressHintView.isHidden = false
         self.searchLocation.text = nil
+        mapView?.userTrackingMode = .follow
+    }
+
+    @IBAction func clearMapPressedV(_ sender: Any) {
+        clearMapV.isEnabled = false
+        mapView?.removeRoutes()
+        mapView?.removeWaypoints()
+        waypoints.removeAll()
+        longPressHintView.isHidden = false
+        self.searchLocation.text = nil
+        mapView?.userTrackingMode = .follow
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -286,7 +295,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         if beganMap {
             self.routes = nil
             self.waypoints = []
-            simulationButton.isSelected = false
         }
         self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: url))
         // Reset the navigation styling to the defaults if we are returning from a presentation.
@@ -368,7 +376,13 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     
     fileprivate func loadLocation(_ location: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
-        let urlString = "https://maps.vietmap.vn/api/autocomplete/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&text=\(location)"
+        let userLocation = self.mapView?.userLocation?.location
+        print(userLocation)
+        var urlString = "https://maps.vietmap.vn/api/autocomplete/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&text=\(location)"
+        if let latlongLocation = userLocation?.coordinate {
+            urlString += "&focus=\(latlongLocation.latitude),\(latlongLocation.longitude)"
+        }
+        print(urlString)
         let search = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let url = URL(string:search!)
 

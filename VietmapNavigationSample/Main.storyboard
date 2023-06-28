@@ -62,16 +62,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-cs-dAn">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiq-Gf-SKY">
-                                        <rect key="frame" x="8" y="0.0" width="103" height="44"/>
-                                        <state key="normal" title="Mô phỏng vị trí"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiq-Gf-SKY">
+                                        <rect key="frame" x="8" y="0.0" width="95" height="44"/>
+                                        <state key="normal" title="Xoá điểm đến"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="simulateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="76o-Mq-vnj"/>
+                                            <action selector="clearMapPressedV:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q6x-QE-QLX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMe-Tl-a1N">
@@ -129,9 +129,9 @@
                         <outlet property="bottomBar" destination="tgD-cs-dAn" id="bIA-KH-Xa9"/>
                         <outlet property="bottomBarBackground" destination="52U-cY-V4s" id="wSk-Ee-ww2"/>
                         <outlet property="clearMap" destination="6ux-mK-LQF" id="9M7-CK-q1M"/>
+                        <outlet property="clearMapV" destination="iiq-Gf-SKY" id="4Qk-Gq-kgb"/>
                         <outlet property="longPressHintView" destination="Tfo-Ic-OqD" id="gYu-YW-6FX"/>
                         <outlet property="searchLocation" destination="ST9-Gg-Df5" id="qRq-jM-gLF"/>
-                        <outlet property="simulationButton" destination="iiq-Gf-SKY" id="DHR-zB-Mwv"/>
                         <outlet property="startButton" destination="nMe-Tl-a1N" id="tCJ-tk-vph"/>
                     </connections>
                 </viewController>
