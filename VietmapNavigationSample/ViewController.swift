@@ -4,6 +4,7 @@ import MapboxNavigation
 import MapboxDirections
 import UserNotifications
 import MapKit
+import SearchTextField
 
 private typealias RouteRequestSuccess = (([Route]) -> Void)
 private typealias RouteRequestFailure = ((NSError) -> Void)
@@ -18,6 +19,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var clearMap: UIButton!
     @IBOutlet weak var bottomBarBackground: UIView!
+    @IBOutlet weak var searchLocation: SearchTextField!
     
     var navigationViewController: SpotARNavigationViewController?
     var navigationCustomController: CustomUINavigationController?
@@ -56,8 +58,13 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             mapView?.showWaypoints(current)
         }
     }
+    
+    var responseSearch: [Response]?
 
     // MARK: Directions Request Handlers
+    @objc public var overheadInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 20, bottom: 70, right: 20)
+    }
 
     fileprivate lazy var defaultSuccess: RouteRequestSuccess = { [weak self] (routes) in
         guard let current = routes.first else { return }
@@ -66,6 +73,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         self?.waypoints = current.routeOptions.waypoints
         self?.clearMap.isHidden = false
         self?.longPressHintView.isHidden = true
+//        self?.mapView?.setOverheadCameraView(from: (self?.waypoints.first!.coordinate)!, along: current.coordinates!, for: self!.overheadInsets)
     }
 
     fileprivate lazy var defaultFailure: RouteRequestFailure = { [weak self] (error) in
@@ -78,6 +86,9 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startMapView()
+        configSearch()
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.systemBlue]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -116,6 +127,75 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
     }
     
+    func showLoading() {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func hideLoading() {
+        dismiss(animated: false, completion: nil)
+    }
+    
+    @objc func backButtonTapped() {
+        searchLocation.resignFirstResponder()
+    }
+    
+    func configSearch() {
+        searchLocation.delegate = self
+        searchLocation.theme.fontColor = UIColor.white
+        searchLocation.theme.subtitleFontColor = UIColor.white
+        searchLocation.theme.font = UIFont.systemFont(ofSize: 16)
+        searchLocation.theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 0.5)
+        searchLocation.theme.bgColor = hexStringToUIColor(hex: "#4d4d4d")
+        searchLocation.theme.cellHeight = 50
+        searchLocation.highlightAttributes = [NSAttributedString.Key.backgroundColor: UIColor.gray, NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 16)]
+        searchLocation.startVisible = true
+        searchLocation.forceNoFiltering = true
+
+        // add sub button
+        searchLocation.clearButtonMode = .whileEditing
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        searchLocation.leftView = backButton
+        searchLocation.leftViewMode = .whileEditing
+
+        // handle with route
+        searchLocation.itemSelectionHandler = { filteredResults, itemPosition in
+            self.view.endEditing(true)
+            // Just in case you need the item position
+            let item = filteredResults[itemPosition]
+            // Do whatever you want with the picked item
+            self.searchLocation.text = item.title
+            self.loadLatLong(self.responseSearch?[itemPosition].refID ?? "") { results in
+                if results != nil {
+                    self.handleRequestRoute(arrivel: results!)
+                }
+            }
+        }
+        
+        searchLocation.userStoppedTypingHandler = {
+            if let location = self.searchLocation.text {
+                // Show the loading indicator
+                if location.count > 1 {
+                    self.searchLocation.showLoadingIndicator()
+                    
+                    self.loadLocation(location) { results in
+                        self.searchLocation.filterItems(results)
+                        self.searchLocation.stopLoadingIndicator()
+                    }
+                }
+            }
+        } as (() -> Void)
+    }
+    
     func startDefaultNavigation() {
         navigationViewController = SpotARNavigationViewController()
         navigationViewController?.delegate = self
@@ -128,6 +208,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         guard let customViewController = storyboard.instantiateViewController(identifier: "custom") as? CustomUINavigationController else {return}
         customViewController.userRoute = route
         customViewController.arrivel = arrivel
+        customViewController.simulateLocation = simulationButton.isSelected
         present(customViewController, animated: true, completion: nil)
     }
 
@@ -138,16 +219,15 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         if let annotation = mapView.annotations?.last, waypoints.count > 2 {
             mapView.removeAnnotation(annotation)
         }
-
-        if waypoints.count > 1 {
-            waypoints = Array(waypoints.suffix(1))
-        }
-
-        arrivel = mapView.convert(tap.location(in: mapView), toCoordinateFrom: mapView)
-        // Note: The destination name can be modified. The value is used in the top banner when arriving at a destination.
-        let waypoint = Waypoint(coordinate: arrivel!, name: "Điểm đến của bạn")
+        handleRequestRoute(arrivel: mapView.convert(tap.location(in: mapView), toCoordinateFrom: mapView))
+    }
+    
+    func handleRequestRoute(arrivel: CLLocationCoordinate2D) {
+        self.showLoading()
+        waypoints.removeAll()
+        self.arrivel = arrivel
+        let waypoint = Waypoint(coordinate: arrivel, name: "Điểm đến của bạn")
         waypoints.append(waypoint)
-
         requestRoute()
     }
 
@@ -161,6 +241,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView?.removeWaypoints()
         waypoints.removeAll()
         longPressHintView.isHidden = false
+        self.searchLocation.text = nil
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -183,6 +264,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
 
     fileprivate func requestRoute(with options: RouteOptions, success: @escaping RouteRequestSuccess, failure: RouteRequestFailure?) {
         let handler: Directions.RouteCompletionHandler = {(waypoints, potentialRoutes, potentialError) in
+            self.hideLoading()
             if let error = potentialError, let fail = failure { return fail(error) }
             guard let routes = potentialRoutes else { return }
             return success(routes)
@@ -200,11 +282,13 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         }
     }
     
-    func startMapView() {
-        self.routes = nil
-        self.waypoints = []
+    func startMapView(_ beganMap: Bool = true) {
+        if beganMap {
+            self.routes = nil
+            self.waypoints = []
+            simulationButton.isSelected = false
+        }
         self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: url))
-        simulationButton.isSelected = false
         // Reset the navigation styling to the defaults if we are returning from a presentation.
         if (presentedViewController != nil) {
             DayStyle().apply()
@@ -260,6 +344,97 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             // Xử lý sự kiện tại đây
         print("Bản đồ đã rerender.")
     }
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    fileprivate func loadLocation(_ location: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
+        let urlString = "https://maps.vietmap.vn/api/autocomplete/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&text=\(location)"
+        let search = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let url = URL(string:search!)
+
+        if let url = url {
+            let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
+                do {
+                    if let data = data {
+                        let decoder = JSONDecoder()
+                        self.responseSearch = try decoder.decode([Response].self, from: data)
+                        var results = [SearchTextFieldItem]()
+                        for result in self.responseSearch ?? [] {
+                            results.append(SearchTextFieldItem(title: result.name, subtitle: result.display))
+                        }
+                        DispatchQueue.main.async {
+                            callback(results)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            callback([])
+                        }
+                    }
+                }
+                catch {
+                    print("Network error: \(error)")
+                    DispatchQueue.main.async {
+                        callback([])
+                    }
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    
+    fileprivate func loadLatLong(_ refID: String, callback: @escaping ((_ results: CLLocationCoordinate2D?) -> Void)) {
+        let urlString = "https://maps.vietmap.vn/api/place/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&refid=\(refID)"
+        let search = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let url = URL(string:search!)
+        
+        if let url = url {
+            let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
+                do {
+                    if let data = data {
+                        let decoder = JSONDecoder()
+                        let response = try decoder.decode(LocationVM.self, from: data)
+                        let result = CLLocationCoordinate2D(latitude: response.latitude, longitude: response.longitude)
+                        DispatchQueue.main.async {
+                            callback(result)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            callback(nil)
+                        }
+                    }
+                }
+                catch {
+                    print("Network error: \(error)")
+                    DispatchQueue.main.async {
+                        callback(nil)
+                    }
+                }
+            })
+            
+            task.resume()
+        }
+    }
 }
 
 // MARK: - NavigationMapViewDelegate
@@ -313,7 +488,16 @@ extension ViewController: SpotARNavigationUIDelegate {
             self.navigationViewController?.cancelListener()
         }
         self.navigationView?.dismiss(animated: true) {
-            self.startMapView()
+            self.searchLocation.text = nil
+            self.startMapView(false)
         }
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.waypoints.removeAll()
+        self.mapView?.removeRoutes()
+        return true
     }
 }

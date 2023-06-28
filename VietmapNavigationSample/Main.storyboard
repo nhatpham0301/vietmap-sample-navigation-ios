@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +38,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52U-cY-V4s" userLabel="Bottom Background View">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tf-yn-8jm" userLabel="Search View">
+                                <rect key="frame" x="5" y="60" width="365" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tìm kiếm ở đây..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ST9-Gg-Df5" customClass="SearchTextField" customModule="SearchTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="PeI-xS-FLF"/>
+                                    <constraint firstItem="ST9-Gg-Df5" firstAttribute="top" secondItem="1tf-yn-8jm" secondAttribute="top" id="XrJ-rd-VYv"/>
+                                    <constraint firstAttribute="bottom" secondItem="ST9-Gg-Df5" secondAttribute="bottom" id="lyV-O7-iqw"/>
+                                    <constraint firstAttribute="trailing" secondItem="ST9-Gg-Df5" secondAttribute="trailing" id="uEm-pn-Jph"/>
+                                    <constraint firstItem="ST9-Gg-Df5" firstAttribute="leading" secondItem="1tf-yn-8jm" secondAttribute="leading" id="zVc-C9-ydv"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-cs-dAn">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -79,12 +99,15 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="9K1-Lm-Kxd"/>
+                            <constraint firstItem="1tf-yn-8jm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="AYP-fS-yUP"/>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="DpJ-Ay-3wD"/>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Feq-fR-8fo"/>
                             <constraint firstItem="eNZ-Hz-1oT" firstAttribute="trailing" secondItem="tgD-cs-dAn" secondAttribute="trailing" id="Fgp-Hc-0OK"/>
+                            <constraint firstItem="eNZ-Hz-1oT" firstAttribute="trailing" secondItem="1tf-yn-8jm" secondAttribute="trailing" constant="5" id="PfC-Tq-4yc"/>
                             <constraint firstItem="eNZ-Hz-1oT" firstAttribute="bottom" secondItem="tgD-cs-dAn" secondAttribute="bottom" id="dZs-zT-gb0"/>
                             <constraint firstItem="Tfo-Ic-OqD" firstAttribute="leading" secondItem="eNZ-Hz-1oT" secondAttribute="leading" constant="16" id="eEd-cM-pFc"/>
                             <constraint firstItem="tgD-cs-dAn" firstAttribute="leading" secondItem="eNZ-Hz-1oT" secondAttribute="leading" id="fio-xr-zWS"/>
+                            <constraint firstItem="1tf-yn-8jm" firstAttribute="leading" secondItem="eNZ-Hz-1oT" secondAttribute="leading" constant="5" id="how-Ne-9nx"/>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="top" secondItem="Tfo-Ic-OqD" secondAttribute="bottom" constant="15" id="rRl-cZ-UWe"/>
                             <constraint firstItem="tgD-cs-dAn" firstAttribute="top" secondItem="Tfo-Ic-OqD" secondAttribute="bottom" constant="15" id="sdu-md-ykj"/>
                             <constraint firstItem="eNZ-Hz-1oT" firstAttribute="trailing" secondItem="Tfo-Ic-OqD" secondAttribute="trailing" constant="16" id="veQ-GA-9Zk"/>
@@ -107,6 +130,7 @@
                         <outlet property="bottomBarBackground" destination="52U-cY-V4s" id="wSk-Ee-ww2"/>
                         <outlet property="clearMap" destination="6ux-mK-LQF" id="9M7-CK-q1M"/>
                         <outlet property="longPressHintView" destination="Tfo-Ic-OqD" id="gYu-YW-6FX"/>
+                        <outlet property="searchLocation" destination="ST9-Gg-Df5" id="qRq-jM-gLF"/>
                         <outlet property="simulationButton" destination="iiq-Gf-SKY" id="DHR-zB-Mwv"/>
                         <outlet property="startButton" destination="nMe-Tl-a1N" id="tCJ-tk-vph"/>
                     </connections>

@@ -62,6 +62,9 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+//        if simulateLocation {
+//            overView.isHidden = true
+//        }
         recenter.isHidden = false
         inProgressNavigation.progress = 0
         bottomSheetInitialY = bottomSheetView.frame.origin.y
@@ -151,10 +154,11 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     @objc func progressDidChange(_ notification: NSNotification) {
         let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey.routeProgressKey] as! RouteProgress
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
-        // Update the user puck
-        // let camera = MGLMapCamera(lookingAtCenter: location.coordinate, fromDistance: 120, pitch: 60, heading: location.course)
-        // mapView.updateCourseTracking(location: location, camera: camera, animated: true)
         handleRoute(routeProgress)
+        // Update the user puck
+        let camera = MGLMapCamera(lookingAtCenter: location.coordinate, altitude: 120, pitch: 60, heading: location.course)
+        mapView.updateCourseTracking(location: location, camera: camera, animated: true)
+        
     }
     
     func handleRoute(_ routeProgress: RouteProgress) {
@@ -164,13 +168,10 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         } else {
             mapView.removeArrow()
         }
-        // Update the user puck
-        mapView.tracksUserCourse = true
-        
         handleProgressRoute(routeProgress)
         let step = sections.first?.first
         street.text = step?.instructions
-        distance.text = String(format: "%.2f", convertMettoKilomet(step?.distance ?? 0))
+        distance.text = String(format: "%.2f", convertMettoKilomet(routeProgress.currentLegProgress.currentStepProgress.distanceRemaining))
 
         // caculate time arrival
         guard let arrivalDate = NSCalendar.current.date(byAdding: .second, value: Int(routeProgress.durationRemaining), to: Date()) else { return }
@@ -194,8 +195,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
 
         
         let progress: CGFloat = CGFloat(routeProgress.distanceRemaining) as CGFloat
-        print("total \(totalDistanceKM)")
-        print("progress \(progress)")
         inProgressNavigation.setProgress(Float(1.0 - (progress/totalDistanceKM)), animated: true)
     }
     
@@ -271,7 +270,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     public func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         self.mapView.showRoutes([routeController.routeProgress.route])
         self.mapView.addAnnotation(marker!)
-        self.mapView.tracksUserCourse = true
         self.isLoadingFinshied = true
     }
     

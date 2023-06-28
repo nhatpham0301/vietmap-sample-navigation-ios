@@ -5,13 +5,13 @@
 	<key>VietMapURL</key>
 	<string>https://run.mocky.io/v3/2cdf49bc-40fe-4aa5-a992-1954c8fb298f</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>vi</string>
+	<string>en</string>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
-	<key>MGLMapboxAPIBaseURL</key>
-	<string>https://maps.vnpost.vn/navigation_dev/route/</string>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1Ijoic2VubmQiLCJhIjoiY2tkcmdzbDB4MDhzcDJ6bzdoOXNwazduMSJ9.in-0A1ZX6yzIMtnJcLdcRw</string>
+	<key>VietMapAPIBaseURL</key>
+	<string>https://maps.vietmap.vn/api/navigations/route/</string>
+	<key>VietMapAccessToken</key>
+	<string>95f852d9f8c38e08ceacfd456b59059d0618254a50d3854c</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
