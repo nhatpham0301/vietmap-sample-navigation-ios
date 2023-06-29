@@ -40,7 +40,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tf-yn-8jm" userLabel="Search View">
-                                <rect key="frame" x="5" y="60" width="365" height="50"/>
+                                <rect key="frame" x="5" y="64" width="365" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tìm kiếm ở đây..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ST9-Gg-Df5" customClass="SearchTextField" customModule="SearchTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
@@ -48,6 +48,11 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,7 +104,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="9K1-Lm-Kxd"/>
-                            <constraint firstItem="1tf-yn-8jm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="AYP-fS-yUP"/>
+                            <constraint firstItem="1tf-yn-8jm" firstAttribute="top" secondItem="eNZ-Hz-1oT" secondAttribute="top" id="AYP-fS-yUP"/>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="DpJ-Ay-3wD"/>
                             <constraint firstItem="52U-cY-V4s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Feq-fR-8fo"/>
                             <constraint firstItem="eNZ-Hz-1oT" firstAttribute="trailing" secondItem="tgD-cs-dAn" secondAttribute="trailing" id="Fgp-Hc-0OK"/>

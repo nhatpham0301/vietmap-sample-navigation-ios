@@ -42,6 +42,8 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     var clickRencenter : Bool = false
     var clickOverview : Bool = false
     var isLoadingFinshied : Bool = false
+    let distanceFormatter = DistanceFormatter(approximate: true)
+    let dateComponentsFormatter = DateComponentsFormatter()
     
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: NavigationMapView!
@@ -91,7 +93,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         
         // Add listeners for progress updates
         resumeNotifications()
-
+        self.voiceController = MapboxVoiceController()
         // Start navigation
         routeController.resume()
         
@@ -134,7 +136,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         mapView.compassView.isHidden = true
         mapView?.styleURL = URL(string: url);
         mapView?.routeLineColor = UIColor.yellow
-        mapView?.userTrackingMode = .follow
+        mapView?.userTrackingMode = .followWithHeading
         mapView?.showsUserHeadingIndicator = true
         mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         routeController.reroutesProactively = true
@@ -158,6 +160,8 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         // Update the user puck
         let camera = MGLMapCamera(lookingAtCenter: location.coordinate, altitude: 120, pitch: 60, heading: location.course)
         mapView.updateCourseTracking(location: location, camera: camera, animated: true)
+        print(mapView.userLocation?.heading)
+        print(location.course)
         
     }
     
@@ -178,12 +182,23 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
         time.text = dateFormatter.string(from: arrivalDate)
-        totalDistance.text = String(format: "%.2f", convertMettoKilomet(routeProgress.distanceRemaining))
+        totalDistance.text = distanceFormatter.string(from: routeProgress.distanceRemaining)
         if (totalDistanceKM.isZero) {
             totalDistanceKM = routeProgress.distanceRemaining
         }
-        timeRemain.text = String(format: "%.f", routeProgress.durationRemaining/60)
-//        speed.text = "\(String(format: "%.f", check(mapView.userLocation?.location?.speed ?? 0.0))) m/s"
+        dateComponentsFormatter.unitsStyle = routeProgress.durationRemaining < 3600 ? .short : .abbreviated
+
+        if let hardcodedTime = dateComponentsFormatter.string(from: 61), routeProgress.durationRemaining < 60 {
+            let arrText = String.localizedStringWithFormat(NSLocalizedString("LESS_THAN", value: "<%@", comment: "Format string for a short distance or time less than a minimum threshold; 1 = duration remaining"), hardcodedTime).components(separatedBy: ",")
+            timeRemain.text = arrText[0]
+        } else {
+            var arrText = dateComponentsFormatter.string(from: routeProgress.durationRemaining)?.components(separatedBy: " ")
+            if (arrText ?? []).count == 4 && arrText?[1].last == ","{
+                arrText?[1].removeLast()
+            }
+            timeRemain.text = (arrText?[0] ?? "") + " " + (arrText?[1] ?? "")
+        }
+        speed.text = "\(String(format: "%.f", check(mapView.userLocation?.location?.speed ?? 0.0))) m/s"
         if let instructions = routeProgress.currentLegProgress.currentStepProgress.step.instructionsDisplayedAlongStep?.last {
             print(instructions.primaryInstruction.maneuverType)
             maneuverView.visualInstruction = instructions.primaryInstruction

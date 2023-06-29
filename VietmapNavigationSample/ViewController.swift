@@ -250,7 +250,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         waypoints.removeAll()
         longPressHintView.isHidden = false
         self.searchLocation.text = nil
-        mapView?.userTrackingMode = .follow
+        mapView?.userTrackingMode = .followWithHeading
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -262,8 +262,11 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     func requestRoute() {
         guard waypoints.count > 0 else { return }
         guard let mapView = mapView else { return }
-
         let userWaypoint = Waypoint(location: mapView.userLocation!.location!, heading: mapView.userLocation?.heading, name: "User location")
+        userWaypoint.headingAccuracy = 60
+        if userWaypoint.heading != nil {
+            userWaypoint.heading = Double(Int(ceil(userWaypoint.heading)))
+        }
         waypoints.insert(userWaypoint, at: 0)
 
         let routeOptions = NavigationRouteOptions(waypoints: waypoints, profileIdentifier: .automobile)
@@ -309,7 +312,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView.delegate = self
         mapView.navigationMapDelegate = self
         mapView.routeLineColor = UIColor.yellow
-        mapView.userTrackingMode = .follow
+        mapView.userTrackingMode = .followWithHeading
 
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))
