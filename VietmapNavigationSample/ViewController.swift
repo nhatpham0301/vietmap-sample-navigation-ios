@@ -74,7 +74,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         self?.clearMapV.isEnabled = true
         self?.longPressHintView.isHidden = true
         self?.mapView?.setOverheadCameraView(from: (self?.waypoints.first!.coordinate)!, along: current.coordinates!, for: self!.overheadInsets)
-        self?.mapView?.userTrackingMode = .none
     }
 
     fileprivate lazy var defaultFailure: RouteRequestFailure = { [weak self] (error) in
@@ -250,7 +249,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         waypoints.removeAll()
         longPressHintView.isHidden = false
         self.searchLocation.text = nil
-        mapView?.userTrackingMode = .followWithHeading
+//        mapView?.userTrackingMode = .follow
+        mapView?.recenterMap()
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -311,8 +311,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         mapView.navigationMapDelegate = self
-        mapView.routeLineColor = UIColor.yellow
-        mapView.userTrackingMode = .followWithHeading
+        mapView.userTrackingMode = .follow
 
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))
@@ -380,7 +379,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     fileprivate func loadLocation(_ location: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
         let userLocation = self.mapView?.userLocation?.location
-        print(userLocation)
         var urlString = "https://maps.vietmap.vn/api/autocomplete/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&text=\(location)"
         if let latlongLocation = userLocation?.coordinate {
             urlString += "&focus=\(latlongLocation.latitude),\(latlongLocation.longitude)"

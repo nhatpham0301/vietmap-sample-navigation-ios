@@ -136,7 +136,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         mapView.compassView.isHidden = true
         mapView?.styleURL = URL(string: url);
         mapView?.routeLineColor = UIColor.yellow
-        mapView?.userTrackingMode = .followWithHeading
+        mapView?.userTrackingMode = .follow
         mapView?.showsUserHeadingIndicator = true
         mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         routeController.reroutesProactively = true
@@ -160,8 +160,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         // Update the user puck
         let camera = MGLMapCamera(lookingAtCenter: location.coordinate, altitude: 120, pitch: 60, heading: location.course)
         mapView.updateCourseTracking(location: location, camera: camera, animated: true)
-        print(mapView.userLocation?.heading)
-        print(location.course)
         
     }
     
@@ -175,7 +173,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         handleProgressRoute(routeProgress)
         let step = sections.first?.first
         street.text = step?.instructions
-        distance.text = String(format: "%.2f", convertMettoKilomet(routeProgress.currentLegProgress.currentStepProgress.distanceRemaining))
+        distance.text = distanceFormatter.string(from: routeProgress.currentLegProgress.currentStepProgress.distanceRemaining)
 
         // caculate time arrival
         guard let arrivalDate = NSCalendar.current.date(byAdding: .second, value: Int(routeProgress.durationRemaining), to: Date()) else { return }
@@ -200,7 +198,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         }
         speed.text = "\(String(format: "%.f", check(mapView.userLocation?.location?.speed ?? 0.0))) m/s"
         if let instructions = routeProgress.currentLegProgress.currentStepProgress.step.instructionsDisplayedAlongStep?.last {
-            print(instructions.primaryInstruction.maneuverType)
             maneuverView.visualInstruction = instructions.primaryInstruction
             maneuverView.drivingSide = instructions.drivingSide
             maneuverView.isStart = true

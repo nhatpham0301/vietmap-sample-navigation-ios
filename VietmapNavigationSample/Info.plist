@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>VietMapURL</key>
-	<string>https://run.mocky.io/v3/2cdf49bc-40fe-4aa5-a992-1954c8fb298f</string>
+	<string>https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleAllowMixedLocalizations</key>
