@@ -124,7 +124,6 @@ public class SpotARNavigationViewController {
         navigationViewController.mapView?.styleURL = URL(string: url);
         navigationViewController.mapView?.routeLineColor = UIColor.yellow
         navigationViewController.mapView?.userTrackingMode = .follow
-        navigationViewController.mapView?.showsUserHeadingIndicator = true
     }
 
     private func addSubViewMap() {

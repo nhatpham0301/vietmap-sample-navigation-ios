@@ -1,16 +1,20 @@
 PODS:
   - SearchTextField (1.2.4)
+  - VietMap (1.0.13)
 
 DEPENDENCIES:
   - SearchTextField
+  - VietMap
 
 SPEC REPOS:
   trunk:
     - SearchTextField
+    - VietMap
 
 SPEC CHECKSUMS:
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
+  VietMap: e27a9d0fb95d362d4322d24738cb564fe9b51035
 
-PODFILE CHECKSUM: b807ea9f70e8bc05e6dc66ba4f561f9dee05b144
+PODFILE CHECKSUM: 8567d659b865b3ca32b54aa8b3b386a510112345
 
 COCOAPODS: 1.12.1

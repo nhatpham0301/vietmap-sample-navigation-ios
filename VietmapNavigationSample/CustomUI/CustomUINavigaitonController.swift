@@ -137,7 +137,6 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         mapView?.styleURL = URL(string: url);
         mapView?.routeLineColor = UIColor.yellow
         mapView?.userTrackingMode = .follow
-        mapView?.showsUserHeadingIndicator = true
         mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         routeController.reroutesProactively = true
     }
