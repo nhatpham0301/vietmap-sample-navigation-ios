@@ -1,4 +1,4 @@
-import MapboxNavigation
+import VietMapNavigation
 import MapboxDirections
 
 extension SpotARNavigationViewController: VisualInstructionDelegate {

@@ -1,6 +1,6 @@
 import Foundation
-import MapboxCoreNavigation
-import MapboxNavigation
+import VietMapCoreNavigation
+import VietMapNavigation
 import MapboxDirections
 import CoreLocation
 
@@ -42,19 +42,23 @@ public class SpotARNavigationViewController {
     }
     
     @objc func progressDidReroute(_ notification: Notification) {
-        if let userInfo = notification.object as? RouteController {
+        if let userInfo = notification.object as? RouteController, let location =  notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as? CLLocation {
+            addManeuverArrow(userInfo.routeProgress)
             navigationViewController.mapView?.showRoutes([userInfo.routeProgress.route])
-            centerMap(userInfo.locationManager.location!)
-            navigationViewController.mapView?.tracksUserCourse = true
+            navigationViewController.mapView?.recenterMap()
+            navigationViewController.mapView?.updateCourseTracking(location: location, animated: true)
         }
    }
     
     @objc func progressDidChange(_ notification: NSNotification  ) {
         let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey.routeProgressKey] as! RouteProgress
         let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
+        print("---------start get location-------------")
+        print(location.coordinate)
+        print("---------end   get location-------------")
         currentLocation = location
-        setCenterIsFirst(location)
-//        updateUserPuck(location)
+//        setCenterIsFirst(location)
+        updateUserPuck(location)
         addManeuverArrow(routeProgress)
     }
     
@@ -87,16 +91,6 @@ public class SpotARNavigationViewController {
     }
     
     private func updateUserPuck(_ location: CLLocation) {
-        if ((navigationViewController.mapView?.tracksUserCourse) != nil), navigationViewController.mapView?.tracksUserCourse == true {
-            let camera = MGLMapCamera(
-                lookingAtCenter: location.coordinate,
-                acrossDistance: 500,
-                pitch: 75,
-                heading: location.course
-            )
-            print("locaiton: \(location.coordinate)")
-            navigationViewController.mapView?.setCamera(camera, animated: true)
-        }
         navigationViewController.mapView?.updateCourseTracking(location: location, animated: true)
     }
     
@@ -118,11 +112,11 @@ public class SpotARNavigationViewController {
     private func configureMapView() {
         navigationViewController.mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         navigationViewController.routeController.reroutesProactively = true
+        self.navigationViewController.mapView?.tracksUserCourse = true
     }
 
     private func customStyleMap() {
         navigationViewController.mapView?.styleURL = URL(string: url);
-        navigationViewController.mapView?.routeLineColor = UIColor.yellow
         navigationViewController.mapView?.userTrackingMode = .follow
     }
 

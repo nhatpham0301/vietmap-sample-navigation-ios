@@ -1,5 +1,5 @@
-import MapboxCoreNavigation
-import MapboxNavigation
+import VietMapCoreNavigation
+import VietMapNavigation
 import MapboxDirections
 
 // To use these delegate methods, set the `VoiceControllerDelegate` on your `VoiceController`.

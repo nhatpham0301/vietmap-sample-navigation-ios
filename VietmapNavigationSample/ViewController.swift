@@ -1,6 +1,6 @@
 import UIKit
-import MapboxCoreNavigation
-import MapboxNavigation
+import VietMapCoreNavigation
+import VietMapNavigation
 import MapboxDirections
 import UserNotifications
 import MapKit
@@ -486,11 +486,11 @@ extension ViewController: NavigationMapViewDelegate {
 }
 
 extension ViewController: SpotARNavigationUIDelegate {
-    func wantsToPresent(viewController: MapboxNavigation.NavigationViewController) {
+    func wantsToPresent(viewController: VietMapNavigation.NavigationViewController) {
         presentAndRemoveMapview(viewController)
     }
     
-    func didArrive(viewController: MapboxNavigation.NavigationViewController) {
+    func didArrive(viewController: VietMapNavigation.NavigationViewController) {
         print("did Arrive")
         if (self.navigationViewController != nil) {
             self.navigationViewController?.cancelListener()

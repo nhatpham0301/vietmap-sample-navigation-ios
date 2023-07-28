@@ -1,6 +1,6 @@
 import Foundation
-import MapboxCoreNavigation
-import MapboxNavigation
+import VietMapCoreNavigation
+import VietMapNavigation
 import MapboxDirections
 import CoreLocation
 
@@ -93,7 +93,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
         
         // Add listeners for progress updates
         resumeNotifications()
-        self.voiceController = MapboxVoiceController()
+//        self.voiceController = MapboxVoiceController()
         // Start navigation
         routeController.resume()
         
@@ -134,10 +134,12 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     private func customStyleMap() {
         mapView.delegate = self
         mapView.compassView.isHidden = true
-        mapView?.styleURL = URL(string: url);
-        mapView?.routeLineColor = UIColor.yellow
-        mapView?.userTrackingMode = .follow
-        mapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.styleURL = URL(string: url);
+        mapView.routeLineColor = UIColor.yellow
+        mapView.userTrackingMode = .follow
+        mapView.tracksUserCourse = true
+        mapView.showsUserLocation = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         routeController.reroutesProactively = true
     }
 
@@ -164,11 +166,7 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     
     func handleRoute(_ routeProgress: RouteProgress) {
         // Add maneuver arrow
-        if routeProgress.currentLegProgress.followOnStep != nil {
-            mapView.addArrow(route: routeProgress.route, legIndex: routeProgress.legIndex, stepIndex: routeProgress.currentLegProgress.stepIndex + 1)
-        } else {
-            mapView.removeArrow()
-        }
+        addManeuverArrow(routeProgress)
         handleProgressRoute(routeProgress)
         let step = sections.first?.first
         street.text = step?.instructions
@@ -262,10 +260,19 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
             self.previousStepIndex = 0
             self.previousLegIndex = 0
             handleRoute(userInfo.routeProgress)
+            addManeuverArrow(userInfo.routeProgress)
         }
         self.mapView.showRoutes([routeController.routeProgress.route])
         self.mapView.tracksUserCourse = true
         self.mapView.recenterMap()
+    }
+
+    private func addManeuverArrow(_ routeProgress: RouteProgress) {
+        if routeProgress.currentLegProgress.followOnStep != nil {
+            self.mapView.addArrow(route: routeProgress.route, legIndex: routeProgress.legIndex, stepIndex: routeProgress.currentLegProgress.stepIndex + 1)
+        } else {
+            self.mapView.removeArrow()
+        }
     }
 
     private func toggleBottomSheet() {
@@ -310,8 +317,9 @@ public class CustomUINavigationController: UIViewController, MGLMapViewDelegate 
     
     @objc func recenterMap(tap: UITapGestureRecognizer) {
         clickRencenter = true
-        mapView.trackUpdateCourse = false
+        mapView.trackUpdateCourse = true
         mapView.tracksUserCourse = true
+//        mapView.userTrackingMode = .follow
         updateCameraAltitude(for: routeController.routeProgress)
     }
     
