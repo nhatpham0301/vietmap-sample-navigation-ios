@@ -26,6 +26,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     var navigationView: NavigationViewController?
     var mapboxRouteController: RouteController?
     let url = Bundle.main.object(forInfoDictionaryKey: "VietMapURL") as! String
+    let keySearch = Bundle.main.object(forInfoDictionaryKey: "VietMapAccessToken") as! String
     
     var arrivel: CLLocationCoordinate2D?
     
@@ -311,7 +312,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         mapView.navigationMapDelegate = self
-        mapView.userTrackingMode = .follow
+        mapView.userTrackingMode = .followWithHeading
 
         let singleTap = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(tap:)))
         mapView.gestureRecognizers?.filter({ $0 is UILongPressGestureRecognizer }).forEach(singleTap.require(toFail:))
@@ -322,7 +323,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
 
     @objc func didSwipe(swipe: UISwipeGestureRecognizer) {
-        print("ssssssss")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
@@ -379,7 +379,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     fileprivate func loadLocation(_ location: String, callback: @escaping ((_ results: [SearchTextFieldItem]) -> Void)) {
         let userLocation = self.mapView?.userLocation?.location
-        var urlString = "https://maps.vietmap.vn/api/autocomplete/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&text=\(location)"
+        var urlString = "https://maps.vietmap.vn/api/search/v3?apikey=\(keySearch)&text=\(location)"
         if let latlongLocation = userLocation?.coordinate {
             urlString += "&focus=\(latlongLocation.latitude),\(latlongLocation.longitude)"
         }
@@ -419,7 +419,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     
     fileprivate func loadLatLong(_ refID: String, callback: @escaping ((_ results: CLLocationCoordinate2D?) -> Void)) {
-        let urlString = "https://maps.vietmap.vn/api/place/v3?apikey=08fdd26db92b7b06c026d314342b3c7e6685a4486943be42&refid=\(refID)"
+        let urlString = "https://maps.vietmap.vn/api/place/v3?apikey=\(keySearch)&refid=\(refID)"
         let search = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let url = URL(string:search!)
         
