@@ -1,6 +1,6 @@
 import VietMapCoreNavigation
 import VietMapNavigation
-import MapboxDirections
+import VietMapDirections
 
 // To use these delegate methods, set the `VoiceControllerDelegate` on your `VoiceController`.
 extension SpotARNavigationViewController: VoiceControllerDelegate {

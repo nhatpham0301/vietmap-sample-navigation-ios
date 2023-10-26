@@ -1,5 +1,5 @@
 import VietMapNavigation
-import MapboxDirections
+import VietMapDirections
 
 extension SpotARNavigationViewController: NavigationViewControllerDelegate {
     // By default, when the user arrives at a waypoint, the next leg starts immediately.

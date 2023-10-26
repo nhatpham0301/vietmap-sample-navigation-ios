@@ -1,7 +1,7 @@
 import Foundation
 import VietMapCoreNavigation
 import VietMapNavigation
-import MapboxDirections
+import VietMapDirections
 import CoreLocation
 
 public class CustomUINavigationController: UIViewController, MGLMapViewDelegate {

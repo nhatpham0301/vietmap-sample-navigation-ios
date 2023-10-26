@@ -1,7 +1,7 @@
 import UIKit
 import VietMapCoreNavigation
 import VietMapNavigation
-import MapboxDirections
+import VietMapDirections
 import UserNotifications
 import MapKit
 import SearchTextField

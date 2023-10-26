@@ -7,6 +7,8 @@ target 'VietmapNavigationSample' do
 
   pod "SearchTextField"
   pod "VietMap" , '1.0.14'
+#  pod "VietMapCoreNavigation" , '1.0.0'
+#  pod "VietMapNavigation" , '1.0.0'
 
   # Pods for VietmapNavigationSample
 

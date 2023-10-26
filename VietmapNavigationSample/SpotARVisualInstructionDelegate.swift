@@ -1,5 +1,5 @@
 import VietMapNavigation
-import MapboxDirections
+import VietMapDirections
 
 extension SpotARNavigationViewController: VisualInstructionDelegate {
     public func label(_ label: InstructionLabel, willPresent instruction: VisualInstruction, as presented: NSAttributedString) -> NSAttributedString? {        

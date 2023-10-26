@@ -11,8 +11,8 @@
 
 ### 1. Cài đặt môi trường.
 
-Cài đặt Homebrew
-Kiểm tra brew
+Cài đặt Homebrew<br>
+Kiểm tra brew<br>
 ```
 $ brew --version
 ```
@@ -28,6 +28,11 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 Cài đặt Carthage
 ```
 $ brew install carthage
+```
+
+Cài đặt pod
+```
+$ brew install cocoapods
 ```
 
 ### 2. Tạo project Navigation với xcode.
@@ -63,8 +68,7 @@ $ chmod +x Cartfile
 Mở file Cartfile thêm 2 dòng sau và lưu lại:
 
 ```
-github "ceeK/Solar" ~> 2.1.0
-github "raphaelmor/Polyline" ~> 4.2.1
+github "vietmap-company/maps-sdk-navigation-ios" "2.1.0"
 ```
 
 Sau đó chạy lệnh sau:
@@ -73,53 +77,50 @@ Sau đó chạy lệnh sau:
 $ carthage bootstrap --platform iOS --use-xcframeworks
 ```
 
+**Lưu ý: Nếu build carthage bị lỗi "file libarclite_iphoneos.a not found". Vui lòng tham khảo cách fix tại đây**
+
+https://stackoverflow.com/questions/75574268/missing-file-libarclite-iphoneos-a-xcode-14-3
+
 File mới sẽ được tạo:
 - Cartfile.resolve: Được chỉ định framework nào sẽ được fetched/built
 - Thư mục Carthage: chứa tất cả các framework được build
 
 Tạo thư mục Frameworks trong NavigationSample<br>
-Kéo thả tất cả thư mục xcframework trong thư mục Carthage/Build vừa tạo ở trên vào thư mục Frameworks như hình dưới:
+Chọn NavigationSample > Chuột phải > New group<br>
+Kéo thả tất cả thư mục xcframework trong thư mục Carthage/Build vừa tạo ở trên vào thư mục Frameworks trong xcode như hình dưới:
 
 ![](./img/img_4.png)
 
-Chọn Package Dependencies và thêm các thư viện sau:<br>
+**Lưu ý: Đảm bảo chuyển đổi Embed thành [Embed & sign]**
+
+![](./img/img_9.png)
+
+* Tạo Podfile bằng cách mở terminal và chạy lệnh sau:
+
 ```
-https://github.com/nhatpham0301/map-ios-sdk.git
-```
-```
-https://github.com/nhatpham0301/vietmap-core-navigation.git
-```
-```
-https://github.com/nhatpham0301/vietmap-navigation.git
-```
-```
-https://github.com/nhatpham0301/vietmap-directions.git
-```
-```
-https://github.com/nhatpham0301/vietmap-geocoder.git
-```
-```
-https://github.com/nhatpham0301/vietmap-speech.git
-```
-```
-https://github.com/nhatpham0301/vietmap-turf-swift.git
+$ cd ~/path/to/NavigationSample
+$ pod init
 ```
 
-![](./img/img_5.png)
+Mở Podfile và thêm các thư viện sau:
 
-Đảm bảo chọn Dependency Rule > Branch > main để sử dụng thư viện mới nhất.
+```
+pod 'VietMap', '1.0.14'
+```
 
-![](./img/img_6.png)
+Sau đó chạy lệnh:
 
-Sau khi hoàn thành sẽ được kết quả.
-
-![](./img/img_7.png)
+```
+pod install
+```
 
 ### 4. Các sự kiện.
 
-[addGestureRecognizer](/README.md#đăng-ký-gesture-recognizer-cho-mapview) : Đăng ký Gesture Recognizer cho mapview</br>
-[Directions](/README.md#request-api-để-tìm-kiếm-đường-đi): Request api để tìm kiếm đường đi</br>
-[NavigationViewController](/README.md#bắt-đầu-điều-hướng): Bắt đầu điều hướng</br>
+[addGestureRecognizer](/README.md#đăng-ký-gesture-recognizer-cho-mapview) : Đăng ký Gesture Recognizer cho mapview
+
+[Directions](/README.md#request-api-để-tìm-kiếm-đường-đi): Request api để tìm kiếm đường đi
+
+[NavigationViewController](/README.md#bắt-đầu-điều-hướng): Bắt đầu điều hướng
 
 Đăng ký lắng nghe sự kiện của quản lý tuyến đường
 
@@ -142,7 +143,9 @@ Sau khi hoàn thành sẽ được kết quả.
 
 ### 5. Xây dựng project.
 
-Thêm config vào Info.plist
+Thêm config vào Info.plist</br>
+
+Yêu cầu quyền truy cập vị trí thiết bị.
 
 ```
 <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -151,17 +154,33 @@ Thêm config vào Info.plist
 <string>Get user location</string>
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>Get user location</string>
+<key>UIBackgroundModes</key>
+<array>
+    <string>audio</string>
+    <string>location</string>
+</array>
 ```
 
-Tạo layout trong Main giống hình dưới, trong đó:
+Thêm config Style URL, URL server và API_KEY.
+
+```
+<key>VietMapURL</key>
+<string>YOUR_STYLE_HERE</string>
+<key>VietMapAPIBaseURL</key>
+<string>YOUR_SERVER_URL</string>
+<key>VietMapAccessToken</key>
+<string>YOUR_API_KEY</string>
+```
+
+Tạo layout trong Main giống hình dưới, trong đó:<br>
 UIView: mapView > hiển thị mapView<br>
 UIButton: clearMarker > xoá marker điểm đến<br>
-UIButton: startButton > bắt đầu điều hướng
-
+UIButton: startButton > bắt đầu điều hướng<br>
+Tham khảo UI hoặc copy paste tại NavigationSample/Main.storyboard 
 
 ![](./img/img_8.png)
 
-Khởi tạo mapView
+#### Khởi tạo mapView
 
 ```swift
 var mapView: NavigationMapView? {
@@ -172,6 +191,22 @@ var mapView: NavigationMapView? {
             view.insertSubview(mapView, belowSubview: longPressHintView)
         }
     }
+}
+
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    startMapView()
+}
+
+func startMapView() {
+    self.routes = nil
+    self.waypoints = []
+    self.mapView = NavigationMapView(frame: view.bounds,styleURL: URL(string: styleView))
+    // Reset the navigation styling to the defaults if we are returning from a presentation.
+    if (presentedViewController != nil) {
+        DayStyle().apply()
+    }
+    Locale.localeVoice = "vi"
 }
 ```
 
@@ -345,9 +380,9 @@ SampleCode
 
 ```swift
 import UIKit
-import MapboxCoreNavigation
-import MapboxNavigation
-import MapboxDirections
+import VietMapCoreNavigation
+import VietMapNavigation
+import VietMapDirections
 import UserNotifications
 
 private typealias RouteRequestSuccess = (([Route]) -> Void)
@@ -366,7 +401,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     var mapboxRouteController: RouteController?
     var currentLocation: CLLocation!
     var isFirstRender: Bool = false
-    var styleView = "https://api.maptiler.com/maps/streets/style.json?key=AVXR2vOTw3aGpqw8nlv2"
+    var styleView = Bundle.main.object(forInfoDictionaryKey: "VietMapURL") as! String
     
     // MARK: Properties
     var mapView: NavigationMapView? {
@@ -643,3 +678,5 @@ extension ViewController: NavigationViewControllerDelegate {
 }
 
 ```
+
+### Tham khảo thêm về CustomUI Navigaiton tại NavigationSample/CustomUI
