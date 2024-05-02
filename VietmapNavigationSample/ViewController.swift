@@ -234,24 +234,25 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
 
     @IBAction func clearMapPressed(_ sender: Any) {
-        clearMap.isHidden = true
-        mapView?.removeRoutes()
-        mapView?.removeWaypoints()
-        waypoints.removeAll()
-        longPressHintView.isHidden = false
-        self.searchLocation.text = nil
-        mapView?.userTrackingMode = .follow
+//        clearMap.isHidden = true
+//        mapView?.removeRoutes()
+//        mapView?.removeWaypoints()
+//        waypoints.removeAll()
+//        longPressHintView.isHidden = false
+//        self.searchLocation.text = nil
+//        mapView?.userTrackingMode = .follow
     }
 
     @IBAction func clearMapPressedV(_ sender: Any) {
-        clearMapV.isEnabled = false
-        mapView?.removeRoutes()
-        mapView?.removeWaypoints()
-        waypoints.removeAll()
-        longPressHintView.isHidden = false
-        self.searchLocation.text = nil
-//        mapView?.userTrackingMode = .follow
-        mapView?.recenterMap()
+        mapView?.styleURL = URL(string: "https://maps.vietmap.vn/api/maps/google-satellite/styles.json?apikey=911f5b7e0a414ed6ab7e4a711c661fcc5a46fc9d1690e042")
+//        clearMapV.isEnabled = false
+//        mapView?.removeRoutes()
+//        mapView?.removeWaypoints()
+//        waypoints.removeAll()
+//        longPressHintView.isHidden = false
+//        self.searchLocation.text = nil
+////        mapView?.userTrackingMode = .follow
+//        mapView?.recenterMap()
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {

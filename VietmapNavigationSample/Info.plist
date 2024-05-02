@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>VietMapURL</key>
-	<string>https://maps.vietmap.vn/api/maps/light/styles.json?apikey=89cb1c3c260c27ea71a115ece3c8d7cec462e7a4c14f0944</string>
+	<string>https://maps.vietmap.vn/api/maps/light/styles.json?apikey=0cd03613175a67f87567f86f0ba2f3b818e3a2b5f2c2634b</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleAllowMixedLocalizations</key>
@@ -11,7 +11,7 @@
 	<key>VietMapAPIBaseURL</key>
 	<string>https://maps.vietmap.vn/api/navigations/route/</string>
 	<key>VietMapAccessToken</key>
-	<string>89cb1c3c260c27ea71a115ece3c8d7cec462e7a4c14f0944</string>
+	<string>0cd03613175a67f87567f86f0ba2f3b818e3a2b5f2c2634b</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

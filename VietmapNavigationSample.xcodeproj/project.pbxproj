@@ -8,22 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0BCA885452282E73FB0BF121 /* Pods_VietmapNavigationSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A5C8BF3E4F5AD2B282A957 /* Pods_VietmapNavigationSample.framework */; };
-		BE09FB732A2D88F600BDEB8E /* Polyline.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */; };
-		BE09FB742A2D88F600BDEB8E /* Polyline.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE09FB752A2D88F800BDEB8E /* Solar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB572A2D88E000BDEB8E /* Solar.xcframework */; };
-		BE09FB762A2D88F800BDEB8E /* Solar.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB572A2D88E000BDEB8E /* Solar.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE09FB772A2D88F900BDEB8E /* Turf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */; };
-		BE09FB782A2D88F900BDEB8E /* Turf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE31D7112AEA765400D6F25C /* VietMapSpeech.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70F2AEA765100D6F25C /* VietMapSpeech.xcframework */; };
-		BE31D7122AEA765400D6F25C /* VietMapSpeech.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70F2AEA765100D6F25C /* VietMapSpeech.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE31D7132AEA765500D6F25C /* VietMapGeocoder.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70C2AEA764B00D6F25C /* VietMapGeocoder.xcframework */; };
-		BE31D7142AEA765500D6F25C /* VietMapGeocoder.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70C2AEA764B00D6F25C /* VietMapGeocoder.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE31D7152AEA765600D6F25C /* VietMapDirections.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70B2AEA764B00D6F25C /* VietMapDirections.xcframework */; };
-		BE31D7162AEA765600D6F25C /* VietMapDirections.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE31D70B2AEA764B00D6F25C /* VietMapDirections.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE6ED2652AEA295300A24654 /* VietMapCoreNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6845B2AEA2837004173B9 /* VietMapCoreNavigation.xcframework */; };
-		BE6ED2662AEA295300A24654 /* VietMapCoreNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6845B2AEA2837004173B9 /* VietMapCoreNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BE6ED2672AEA295300A24654 /* VietMapNavigation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6845A2AEA2837004173B9 /* VietMapNavigation.xcframework */; };
-		BE6ED2682AEA295300A24654 /* VietMapNavigation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BEC6845A2AEA2837004173B9 /* VietMapNavigation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEA06EC52A4A9EBC00B89772 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA06EC42A4A9EBC00B89772 /* LocationModel.swift */; };
 		BEAB825429EE591E00B910D2 /* SpotARVisualInstructionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */; };
 		BEAB825529EE591E00B910D2 /* SpotARNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */; };
@@ -48,14 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BE09FB762A2D88F800BDEB8E /* Solar.xcframework in Embed Frameworks */,
-				BE31D7142AEA765500D6F25C /* VietMapGeocoder.xcframework in Embed Frameworks */,
-				BE6ED2682AEA295300A24654 /* VietMapNavigation.xcframework in Embed Frameworks */,
-				BE09FB782A2D88F900BDEB8E /* Turf.xcframework in Embed Frameworks */,
-				BE09FB742A2D88F600BDEB8E /* Polyline.xcframework in Embed Frameworks */,
-				BE31D7122AEA765400D6F25C /* VietMapSpeech.xcframework in Embed Frameworks */,
-				BE31D7162AEA765600D6F25C /* VietMapDirections.xcframework in Embed Frameworks */,
-				BE6ED2662AEA295300A24654 /* VietMapCoreNavigation.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,12 +42,6 @@
 		5B0B0572AE1196B8E7DA7B97 /* Pods-VietmapNavigationSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VietmapNavigationSample.debug.xcconfig"; path = "Target Support Files/Pods-VietmapNavigationSample/Pods-VietmapNavigationSample.debug.xcconfig"; sourceTree = "<group>"; };
 		63A5C8BF3E4F5AD2B282A957 /* Pods_VietmapNavigationSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VietmapNavigationSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FD87BEBF149EBBA6FF454A /* Pods-VietmapNavigationSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VietmapNavigationSample.release.xcconfig"; path = "Target Support Files/Pods-VietmapNavigationSample/Pods-VietmapNavigationSample.release.xcconfig"; sourceTree = "<group>"; };
-		BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Polyline.xcframework; path = Carthage/Build/Polyline.xcframework; sourceTree = "<group>"; };
-		BE09FB572A2D88E000BDEB8E /* Solar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Solar.xcframework; path = Carthage/Build/Solar.xcframework; sourceTree = "<group>"; };
-		BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Turf.xcframework; path = Carthage/Build/Turf.xcframework; sourceTree = "<group>"; };
-		BE31D70B2AEA764B00D6F25C /* VietMapDirections.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VietMapDirections.xcframework; path = Carthage/Build/VietMapDirections.xcframework; sourceTree = "<group>"; };
-		BE31D70C2AEA764B00D6F25C /* VietMapGeocoder.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VietMapGeocoder.xcframework; path = Carthage/Build/VietMapGeocoder.xcframework; sourceTree = "<group>"; };
-		BE31D70F2AEA765100D6F25C /* VietMapSpeech.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VietMapSpeech.xcframework; path = Carthage/Build/VietMapSpeech.xcframework; sourceTree = "<group>"; };
 		BEA06EC42A4A9EBC00B89772 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		BEAB824F29EE591D00B910D2 /* SpotARVisualInstructionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARVisualInstructionDelegate.swift; sourceTree = "<group>"; };
 		BEAB825029EE591D00B910D2 /* SpotARNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewController.swift; sourceTree = "<group>"; };
@@ -79,8 +49,6 @@
 		BEAB825229EE591D00B910D2 /* SpotARNavigationUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationUIDelegate.swift; sourceTree = "<group>"; };
 		BEAB825329EE591D00B910D2 /* SpotARNavigationViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotARNavigationViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BEB931B529ED061E00C105D3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		BEC6845A2AEA2837004173B9 /* VietMapNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VietMapNavigation.xcframework; path = Carthage/Build/VietMapNavigation.xcframework; sourceTree = "<group>"; };
-		BEC6845B2AEA2837004173B9 /* VietMapCoreNavigation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VietMapCoreNavigation.xcframework; path = Carthage/Build/VietMapCoreNavigation.xcframework; sourceTree = "<group>"; };
 		BED4ACDC2A1C67FD004F0AAC /* CustomUINavigaitonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUINavigaitonController.swift; sourceTree = "<group>"; };
 		BED4ACDE2A1C6C3F004F0AAC /* CustomView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomView.storyboard; sourceTree = "<group>"; };
 		BED4ACE02A1C6D04004F0AAC /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
@@ -98,14 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE09FB732A2D88F600BDEB8E /* Polyline.xcframework in Frameworks */,
-				BE31D7132AEA765500D6F25C /* VietMapGeocoder.xcframework in Frameworks */,
-				BE31D7152AEA765600D6F25C /* VietMapDirections.xcframework in Frameworks */,
-				BE09FB772A2D88F900BDEB8E /* Turf.xcframework in Frameworks */,
-				BE31D7112AEA765400D6F25C /* VietMapSpeech.xcframework in Frameworks */,
-				BE6ED2672AEA295300A24654 /* VietMapNavigation.xcframework in Frameworks */,
-				BE6ED2652AEA295300A24654 /* VietMapCoreNavigation.xcframework in Frameworks */,
-				BE09FB752A2D88F800BDEB8E /* Solar.xcframework in Frameworks */,
 				0BCA885452282E73FB0BF121 /* Pods_VietmapNavigationSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,14 +85,6 @@
 		BE9F6F5729ECE861008E31FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE31D70F2AEA765100D6F25C /* VietMapSpeech.xcframework */,
-				BE31D70B2AEA764B00D6F25C /* VietMapDirections.xcframework */,
-				BE31D70C2AEA764B00D6F25C /* VietMapGeocoder.xcframework */,
-				BEC6845B2AEA2837004173B9 /* VietMapCoreNavigation.xcframework */,
-				BEC6845A2AEA2837004173B9 /* VietMapNavigation.xcframework */,
-				BE09FB562A2D88E000BDEB8E /* Polyline.xcframework */,
-				BE09FB572A2D88E000BDEB8E /* Solar.xcframework */,
-				BE09FB5D2A2D88E000BDEB8E /* Turf.xcframework */,
 				63A5C8BF3E4F5AD2B282A957 /* Pods_VietmapNavigationSample.framework */,
 			);
 			name = Frameworks;

@@ -22,7 +22,7 @@ public class SpotARNavigationViewController {
         navigationViewController = NavigationViewController(
             for: route,
             styles: [NightStyle()],
-            locationManager: getNavigationLocationManager(simulated: simulated)
+            locationManager: getNavigationLocationManager(simulated: true)
         )
         navigationViewController.delegate = self
         customStyleMap()
